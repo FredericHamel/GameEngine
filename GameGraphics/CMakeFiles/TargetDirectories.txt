@@ -1,0 +1,2 @@
+/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/CMakeFiles/GameGraphics.dir
+/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/CMakeFiles/clean-all.dir
