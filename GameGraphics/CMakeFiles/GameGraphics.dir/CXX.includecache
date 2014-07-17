@@ -6,25 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/src/GraphicManager.cpp
-GraphicManager.h
-/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/src/GraphicManager.h
-GL/gl.h
--
-typeinfo
--
-
-include/Color.h
-Common.h
-include/Common.h
-
-include/ColoredPoint2D.h
-Common.h
-include/Common.h
-Color.h
-include/Color.h
-Point2D.h
-include/Point2D.h
+/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/src/GameWindow.cpp
+GameWindow.h
+/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/src/GameWindow.h
 
 include/Common.h
 cstdint
@@ -51,32 +35,6 @@ include/StringConcat.h
 include/GameWindow.h
 Common.h
 include/Common.h
-
-include/GraphicManager.h
-Common.h
-include/Common.h
-Sprite.h
-include/Sprite.h
-ColoredPoint2D.h
-include/ColoredPoint2D.h
-GameWindow.h
-include/GameWindow.h
-
-include/Point2D.h
-ostream
--
-
-include/Rectangle.h
-Common.h
-include/Common.h
-Point2D.h
-include/Point2D.h
-
-include/Sprite.h
-Common.h
-include/Common.h
-Rectangle.h
-include/Rectangle.h
 
 include/StringConcat.h
 sstream

@@ -11,7 +11,8 @@ include(${CMAKE_MODULE_PATH}/clean-all.cmake)
 
 InitCleanAll()
 
-set(CMAKE_CXX_FLAGS --std=c++0x)
+
+set(CMAKE_CXX_FLAGS "--std=c++0x -Wall -Werror")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 file(GLOB 
