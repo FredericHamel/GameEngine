@@ -2,7 +2,7 @@
 
 bool InputManager::PollEvent(GameEvent* event)
 {
-	SDL_PollEvent(event);
+	return SDL_PollEvent(event);
 }
 
 void InputManager::WaitEvent(GameEvent* event)

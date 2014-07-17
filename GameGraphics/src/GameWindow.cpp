@@ -1,7 +1,5 @@
 #include "GameWindow.h"
 
-static int Counter = 0;
-
 GameWindow::GameWindow(std::string title, int32_t x, int32_t y, int32_t w, int32_t h, uint32_t flags)
 	:flags(0)
 {
