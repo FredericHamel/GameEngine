@@ -1,31 +1,28 @@
 #ifndef GAMETIME_H
 #define GAMETIME_H
 
-#ifdef GAME
-	#include "Common.h"
-#else
-	#include <cstdint>
-#endif
+#include "Common.h"
 
-class GameTime
+class ugen::GameTime
 {
 	GameTime();
 public:
 	~GameTime();
 
-	float getElapsedTimeSecond() const;
-	float getElapsedTimeMillisecond() const;
+	double getElapsedTimeSecond() const;
+	double getElapsedTimeMillisecond() const;
 	
 	// Get unique instance
-	static GameTime* getInstance();
+	static ugen::GameTime* getInstance();
 
-	void Start();
-	void Stop();
+	void Init();
+	void Update();
 private:
-	static GameTime gameTime_;
+	static ugen::GameTime gameTime_;
 
-	unsigned long long begin_;
-	unsigned long long elapsedTimeMillisecond_;
+	double begin_;
+	double end_;
+	double elapsedTimeMilliseconds_;
 };
 
 #endif // GAMETIME_H

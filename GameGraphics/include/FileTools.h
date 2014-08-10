@@ -4,7 +4,7 @@
 #include "Common.h" 
 #include <physfs/physfs.h>
 
-class FileTools
+class ugen::FileTools
 {
 public:
 	enum TYPE_APPEND

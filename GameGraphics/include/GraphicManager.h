@@ -7,7 +7,7 @@
 #include "GameWindow.h"
 
 // Gestion 2d
-class GraphicManager
+class ugen::GraphicManager
 {
 public:
 	GraphicManager();
@@ -16,8 +16,8 @@ public:
 	
 	void Init();
 	void toggleFullscreen();
+	void getWindowSize(int32_t* w, int32_t* h);
 
-	
 	// Set Matrix mode
 	void beginProjection();
 	void beginModelView();
@@ -41,16 +41,17 @@ public:
 
 	// Color RGB
 	void Clear(float, float, float, float);
-	void Draw(Sprite*, const Rectangle*, const Rectangle*) const;
-	void DrawPoint2D(std::vector<ColoredPoint2D*>);
-	void DrawRect(const Rectangle&, const Color&);
+	void Draw(const ugen::Sprite* const, const ugen::Rectangle* const, const ugen::Rectangle* const) const;
+	void DrawString(const ugen::SpriteFont* const, std::string, const ugen::Point2D* const, Color);
+	void DrawPoint2D(std::vector<ColoredPoint2D*>) const;
+	void DrawRect(const ugen::Rectangle* const, const ugen::Color* const) const;
 	void EndDraw();
 private:
-	GameWindow* getWindow() const;
+	ugen::GameWindow* getWindow() const;
 #ifndef GAME_H
-	GameWindow* window_;
+	ugen::GameWindow* window_;
 #endif
-friend class Game;
+friend class ugen::Game;
 };
 
 #endif

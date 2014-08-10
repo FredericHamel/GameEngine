@@ -417,6 +417,29 @@ CMakeFiles/GameGraphics.dir/src/Sprite.cpp.o.provides: CMakeFiles/GameGraphics.d
 
 CMakeFiles/GameGraphics.dir/src/Sprite.cpp.o.provides.build: CMakeFiles/GameGraphics.dir/src/Sprite.cpp.o
 
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o: CMakeFiles/GameGraphics.dir/flags.make
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o: src/SpriteFont.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/CMakeFiles $(CMAKE_PROGRESS_17)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o -c /home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/src/SpriteFont.cpp
+
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/src/SpriteFont.cpp > CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.i
+
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/src/SpriteFont.cpp -o CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.s
+
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o.requires:
+.PHONY : CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o.requires
+
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o.provides: CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GameGraphics.dir/build.make CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o.provides.build
+.PHONY : CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o.provides
+
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o.provides.build: CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o
+
 # Object files for target GameGraphics
 GameGraphics_OBJECTS = \
 "CMakeFiles/GameGraphics.dir/src/GameWindow.cpp.o" \
@@ -434,7 +457,8 @@ GameGraphics_OBJECTS = \
 "CMakeFiles/GameGraphics.dir/src/DrawableGameComponent.cpp.o" \
 "CMakeFiles/GameGraphics.dir/src/Point2D.cpp.o" \
 "CMakeFiles/GameGraphics.dir/src/ImageTools.cpp.o" \
-"CMakeFiles/GameGraphics.dir/src/Sprite.cpp.o"
+"CMakeFiles/GameGraphics.dir/src/Sprite.cpp.o" \
+"CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o"
 
 # External object files for target GameGraphics
 GameGraphics_EXTERNAL_OBJECTS =
@@ -455,6 +479,7 @@ lib/libGameGraphics.so: CMakeFiles/GameGraphics.dir/src/DrawableGameComponent.cp
 lib/libGameGraphics.so: CMakeFiles/GameGraphics.dir/src/Point2D.cpp.o
 lib/libGameGraphics.so: CMakeFiles/GameGraphics.dir/src/ImageTools.cpp.o
 lib/libGameGraphics.so: CMakeFiles/GameGraphics.dir/src/Sprite.cpp.o
+lib/libGameGraphics.so: CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o
 lib/libGameGraphics.so: CMakeFiles/GameGraphics.dir/build.make
 lib/libGameGraphics.so: /usr/lib64/libGLU.so
 lib/libGameGraphics.so: /usr/lib64/libGL.so
@@ -489,6 +514,7 @@ CMakeFiles/GameGraphics.dir/requires: CMakeFiles/GameGraphics.dir/src/DrawableGa
 CMakeFiles/GameGraphics.dir/requires: CMakeFiles/GameGraphics.dir/src/Point2D.cpp.o.requires
 CMakeFiles/GameGraphics.dir/requires: CMakeFiles/GameGraphics.dir/src/ImageTools.cpp.o.requires
 CMakeFiles/GameGraphics.dir/requires: CMakeFiles/GameGraphics.dir/src/Sprite.cpp.o.requires
+CMakeFiles/GameGraphics.dir/requires: CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o.requires
 .PHONY : CMakeFiles/GameGraphics.dir/requires
 
 CMakeFiles/GameGraphics.dir/clean:

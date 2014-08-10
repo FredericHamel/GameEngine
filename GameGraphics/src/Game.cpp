@@ -3,6 +3,10 @@
 #include "FileTools.h"
 #include <typeinfo>
 
+using ugen::Game;
+using ugen::GameTime;
+using ugen::GraphicManager;
+
 /**
  * @brief Construtor of the game main class.
  */
@@ -29,19 +33,19 @@ void Game::Run()
 	GameTime *gameTime = GameTime::getInstance();
 	Initialize();
 	LoadContent();
-
-	float IntervalMAJ = 1000 / 60.0f;
-	float TempsEcouleDepuisMAJ = 0;
+	
+	double IntervalMAJ = 1000.0 / 60.0;
+	double TempsEcouleDepuisMAJ = IntervalMAJ;
+	gameTime->Init();
 	while(isRunning)
 	{
-		gameTime->Start();
-		if(TempsEcouleDepuisMAJ > IntervalMAJ)
+		if(TempsEcouleDepuisMAJ >= IntervalMAJ)
 		{
 			Draw(*gameTime);
-			Update(*gameTime);
-			TempsEcouleDepuisMAJ -= IntervalMAJ;
+			TempsEcouleDepuisMAJ = 0;
 		}
-		gameTime->Stop();
+		gameTime->Update();
+		Update(*gameTime);
 		TempsEcouleDepuisMAJ += gameTime->getElapsedTimeMillisecond();
 	}
 	UnloadContent();

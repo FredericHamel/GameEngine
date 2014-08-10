@@ -20,6 +20,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/src/Point2D.cpp" "/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/CMakeFiles/GameGraphics.dir/src/Point2D.cpp.o"
   "/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/src/Rectangle.cpp" "/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/CMakeFiles/GameGraphics.dir/src/Rectangle.cpp.o"
   "/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/src/Sprite.cpp" "/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/CMakeFiles/GameGraphics.dir/src/Sprite.cpp.o"
+  "/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/src/SpriteFont.cpp" "/home/frederic/Documents/Projet_CPP/ProjetGame/GameGraphics/CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

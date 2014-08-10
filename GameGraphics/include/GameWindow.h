@@ -3,7 +3,7 @@
 
 #include "Common.h"
 
-class GameWindow
+class ugen::GameWindow
 {
 public:
 	GameWindow(std::string, int32_t, int32_t, int32_t, int32_t, uint32_t);
@@ -31,7 +31,7 @@ private:
 	SDL_Window* internal_window;
 	SDL_GLContext glContext;
 #endif
-friend class GraphicManager;
+friend class ugen::GraphicManager;
 };
 
 #endif

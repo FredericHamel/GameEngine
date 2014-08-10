@@ -1,6 +1,8 @@
 #include "Sprite.h"
 #include <GL/gl.h>
 
+using ugen::Sprite;
+
 Sprite::Sprite(const std::string& spriteID, const Rectangle& dimension, int32_t nOfColor, void* data)
 	:dimension_(dimension)
 {
@@ -32,5 +34,5 @@ void Sprite::setData(void* data, int32_t nOfColor)
 	glBindTexture(GL_TEXTURE_2D, buffer_);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexImage2D(GL_TEXTURE_2D, 0, nOfColor, getDimension().getWidth(), getDimension().getHeight(), 0, format, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_2D, 0, format, getDimension().getWidth(), getDimension().getHeight(), 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
 }

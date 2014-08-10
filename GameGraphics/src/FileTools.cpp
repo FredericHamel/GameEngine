@@ -1,6 +1,8 @@
 #include "FileTools.h"
 #include <iostream> 
 
+using ugen::FileTools;
+
 /**
  * @brief initialize the physfs library.
  */

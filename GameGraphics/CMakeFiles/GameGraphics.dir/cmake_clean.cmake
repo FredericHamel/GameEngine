@@ -15,6 +15,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/GameGraphics.dir/src/Point2D.cpp.o"
   "CMakeFiles/GameGraphics.dir/src/ImageTools.cpp.o"
   "CMakeFiles/GameGraphics.dir/src/Sprite.cpp.o"
+  "CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o"
   "lib/libGameGraphics.pdb"
   "lib/libGameGraphics.so"
 )

@@ -1,5 +1,11 @@
 #include "GraphicManager.h"
+#include "SpriteFont.h"
 #include <GL/gl.h>
+
+using ugen::Point2D;
+using ugen::Rectangle;
+using ugen::GameWindow;
+using ugen::GraphicManager;
 
 const std::string DEFAULT_TITLE = "Game Engine";
 const int32_t DEFAULT_WIDTH = 640;
@@ -38,6 +44,8 @@ void GraphicManager::Init()
 	glDisable(GL_DEPTH_TEST);
 
 	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 	beginProjection();
 	loadIdentity();
@@ -48,6 +56,11 @@ void GraphicManager::Init()
 	loadIdentity();
 
 	glClearColor(0.0,0.0,0.0,1.0);
+}
+
+void GraphicManager::getWindowSize(int32_t* w, int32_t* h)
+{
+	getWindow()->getWindowSize(*w, *h);
 }
 
 void GraphicManager::beginProjection()
@@ -148,61 +161,78 @@ void GraphicManager::Clear(float r, float g, float b, float a)
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void GraphicManager::Draw(Sprite* sprite, const Rectangle* src, const Rectangle* dst) const
+void GraphicManager::Draw(const Sprite* const sprite, const Rectangle* const src, const Rectangle* const dst) const
 {
 	if(src == 0)
 	{
 		glBindTexture(GL_TEXTURE_2D, sprite->getBuffer());
 		glBegin(GL_QUADS);
-			glTexCoord2f(0, 0);		glVertex3f(dst->getX(), dst->getY(), 0);
-			glTexCoord2f(1, 0);		glVertex3f(dst->getX() + dst->getWidth(), dst->getY(), 0);
-			glTexCoord2f(1, 1);		glVertex3f(dst->getX() + dst->getWidth(), dst->getY() + dst->getHeight(), 0);
-			glTexCoord2f(0, 1);		glVertex3f(dst->getX(), dst->getY() + dst->getHeight(), 0);
+			glTexCoord2f(0, 0);	glVertex3f(dst->getX(), dst->getY(), 0);
+			glTexCoord2f(1, 0);	glVertex3f(dst->getX() + dst->getWidth(), dst->getY(), 0);
+			glTexCoord2f(1, 1);	glVertex3f(dst->getX() + dst->getWidth(), dst->getY() + dst->getHeight(), 0);
+			glTexCoord2f(0, 1);	glVertex3f(dst->getX(), dst->getY() + dst->getHeight(), 0);
 		glEnd();
 	}
 	else
 	{
-		if(src->getX() + src->getWidth() > sprite->getWidth() ||
-			src->getY() + src->getHeight() > sprite->getHeight())
-		{
-			Debug::warning(StringConcat() << "Rectangle src is outside the image rectangle...");
-		}
+		if(dst == NULL)
+			Debug::warning(StringConcat() << "-- Null destination.");
 		else
 		{
-			glBindTexture(GL_TEXTURE_2D, sprite->getBuffer());
-			Point2D p[2];
-			p[0].Offset(src->getX() / sprite->getWidth(), src->getY() / sprite->getHeight());
-			p[1].Offset((src->getX() + src->getWidth()) / sprite->getWidth(), (src->getY() + src->getHeight()) / sprite->getHeight());
-			glBegin(GL_QUADS);
-				glTexCoord2f(p[0].getX(), p[0].getY()); glVertex3f(dst->getX(), dst->getY(), 0);
-				glTexCoord2f(p[1].getX(), p[0].getY()); glVertex3f(dst->getX() + dst->getWidth(), dst->getY(), 0);
-				glTexCoord2f(p[1].getX(), p[1].getY()); glVertex3f(dst->getX() + dst->getWidth(), dst->getY() + dst->getHeight(), 0);
-				glTexCoord2f(p[0].getX(), p[1].getY()); glVertex3f(dst->getX(), dst->getY() + dst->getHeight(), 0);
-			glEnd();
+			if(src->getX() + src->getWidth() > sprite->getWidth() ||
+				src->getY() + src->getHeight() > sprite->getHeight())
+			{
+				Debug::warning(StringConcat() << "Rectangle src is outside the image rectangle...");
+			}
+			else
+			{
+				glBindTexture(GL_TEXTURE_2D, sprite->getBuffer());
+				Point2D p[2];
+				p[0].Offset(src->getX() / sprite->getWidth(), src->getY() / sprite->getHeight());
+				p[1].Offset((src->getX() + src->getWidth()) / sprite->getWidth(), (src->getY() + src->getHeight()) / sprite->getHeight());
+				glBegin(GL_QUADS);
+					glTexCoord2f(p[0].getX(), p[0].getY()); glVertex3f(dst->getX(), dst->getY(), 0);
+					glTexCoord2f(p[1].getX(), p[0].getY()); glVertex3f(dst->getX() + dst->getWidth(), dst->getY(), 0);
+					glTexCoord2f(p[1].getX(), p[1].getY()); glVertex3f(dst->getX() + dst->getWidth(), dst->getY() + dst->getHeight(), 0);
+					glTexCoord2f(p[0].getX(), p[1].getY()); glVertex3f(dst->getX(), dst->getY() + dst->getHeight(), 0);
+				glEnd();
+			}
 		}
 	}
 }
 
-#include <typeinfo>
-void GraphicManager::DrawPoint2D(std::vector<ColoredPoint2D*> list)
+void GraphicManager::DrawString(const SpriteFont *const font, std::string text, const Point2D* const p, Color fg)
+{
+	Sprite* sprite = font->renderText(text, fg);
+	if(sprite != NULL)
+	{
+		Rectangle rect(*p, sprite->getWidth(), sprite->getHeight());
+		Draw(sprite, NULL, &rect);
+		delete sprite;
+	}
+}
+
+void GraphicManager::DrawPoint2D(std::vector<ColoredPoint2D*> list) const
 {
 	glBegin(GL_POINTS);
 		for(auto it = list.begin(); it != list.end(); ++it)
 		{
-			glColor3f((*it)->getRed() / 255.0f, (*it)->getGreen() / 255.0f, (*it)->getBlue() / 255.0f); glVertex3f((*it)->getX(), (*it)->getY(), 0);
+			glColor3ub((*it)->getRed(), (*it)->getGreen(), (*it)->getBlue()); glVertex2f((*it)->getX(), (*it)->getY());
 		}
 	glEnd();
 }
 
-void GraphicManager::DrawRect(const Rectangle& rect, const Color& color)
+void GraphicManager::DrawRect(const Rectangle* const rect, const Color* const color) const
 {
+	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
-		glColor3f(color.getRed(), color.getGreen(), color.getBlue());
-		glVertex3i(rect.getX(), rect.getY(), 0);
-		glVertex3i(rect.getX(), rect.getY() + rect.getHeight(), 0);
-		glVertex3i(rect.getX() + rect.getWidth(), rect.getY() + rect.getHeight(), 0);
-		glVertex3i(rect.getX() + rect.getWidth(), rect.getY(), 0);
+		glColor3f(color->getRed() / 255.0f, color->getGreen() / 255.0f, color->getBlue() / 255.0f);
+		glVertex3i(rect->getX(), rect->getY(), 0);
+		glVertex3i(rect->getX() + rect->getWidth(), rect->getY(), 0);
+		glVertex3i(rect->getX() + rect->getWidth(), rect->getY() + rect->getHeight(), 0);
+		glVertex3i(rect->getX(), rect->getY() + rect->getHeight(), 0);
 	glEnd();
+	glEnable(GL_TEXTURE_2D);
 }
 
 void GraphicManager::EndDraw()

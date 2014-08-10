@@ -7,6 +7,7 @@ class Debug
 {
 public:
 	static void init(std::string);
+	static void reset();
 	static void check_assertion(bool, const StringConcat&);
 	static void error(const StringConcat&);
 	static void warning(const StringConcat&);

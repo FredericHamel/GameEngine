@@ -3,7 +3,7 @@
 
 #include "Common.h"
 
-class GameSystem
+class ugen::GameSystem
 {
 	GameSystem();
 public:
@@ -12,7 +12,7 @@ public:
 	static void Init();
 	static void Init(uint32_t);
 private:
-	static GameSystem gameSystem;
+	static ugen::GameSystem gameSystem;
 };
 
 #endif // GAME_SYSTEM_H

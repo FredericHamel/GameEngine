@@ -103,6 +103,7 @@ CMakeFiles/GameGraphics.dir/src/GraphicManager.cpp.o: include/GraphicManager.h
 CMakeFiles/GameGraphics.dir/src/GraphicManager.cpp.o: include/Point2D.h
 CMakeFiles/GameGraphics.dir/src/GraphicManager.cpp.o: include/Rectangle.h
 CMakeFiles/GameGraphics.dir/src/GraphicManager.cpp.o: include/Sprite.h
+CMakeFiles/GameGraphics.dir/src/GraphicManager.cpp.o: include/SpriteFont.h
 CMakeFiles/GameGraphics.dir/src/GraphicManager.cpp.o: include/StringConcat.h
 
 CMakeFiles/GameGraphics.dir/src/ImageTools.cpp.o: src/ImageTools.cpp
@@ -122,7 +123,10 @@ CMakeFiles/GameGraphics.dir/src/InputManager.cpp.o: include/InputManager.h
 CMakeFiles/GameGraphics.dir/src/InputManager.cpp.o: include/StringConcat.h
 
 CMakeFiles/GameGraphics.dir/src/Point2D.cpp.o: src/Point2D.cpp
+CMakeFiles/GameGraphics.dir/src/Point2D.cpp.o: include/Common.h
+CMakeFiles/GameGraphics.dir/src/Point2D.cpp.o: include/Debug.h
 CMakeFiles/GameGraphics.dir/src/Point2D.cpp.o: include/Point2D.h
+CMakeFiles/GameGraphics.dir/src/Point2D.cpp.o: include/StringConcat.h
 
 CMakeFiles/GameGraphics.dir/src/Rectangle.cpp.o: src/Rectangle.cpp
 CMakeFiles/GameGraphics.dir/src/Rectangle.cpp.o: include/Common.h
@@ -138,4 +142,14 @@ CMakeFiles/GameGraphics.dir/src/Sprite.cpp.o: include/Point2D.h
 CMakeFiles/GameGraphics.dir/src/Sprite.cpp.o: include/Rectangle.h
 CMakeFiles/GameGraphics.dir/src/Sprite.cpp.o: include/Sprite.h
 CMakeFiles/GameGraphics.dir/src/Sprite.cpp.o: include/StringConcat.h
+
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o: src/SpriteFont.cpp
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o: include/Color.h
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o: include/Common.h
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o: include/Debug.h
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o: include/Point2D.h
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o: include/Rectangle.h
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o: include/Sprite.h
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o: include/SpriteFont.h
+CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o: include/StringConcat.h
 

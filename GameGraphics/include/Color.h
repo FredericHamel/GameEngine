@@ -3,7 +3,7 @@
 
 #include "Common.h"
 
-class Color
+class ugen::Color
 {
 public:
 	/**
@@ -93,8 +93,8 @@ public:
 		WHITE = 0xFFFFFF
 	};
 	
-	Color(uint8_t, uint8_t, uint8_t, uint8_t=0);
-	Color(Color::Palette);
+	Color(uint8_t, uint8_t, uint8_t, uint8_t=255);
+	Color(ugen::Color::Palette);
 	uint8_t getRed() const;
 	uint8_t getGreen() const;
 	uint8_t getBlue() const;
@@ -105,22 +105,22 @@ private:
 	uint8_t r, g, b, a;
 };
 
-inline uint8_t Color::getRed() const
+inline uint8_t ugen::Color::getRed() const
 {
 	return this->r;
 }
 
-inline uint8_t Color::getGreen() const
+inline uint8_t ugen::Color::getGreen() const
 {
 	return this->g;
 }
 
-inline uint8_t Color::getBlue() const
+inline uint8_t ugen::Color::getBlue() const
 {
 	return this->b;
 }
 
-inline uint8_t Color::getAlpha() const
+inline uint8_t ugen::Color::getAlpha() const
 {
 	return this->a;
 }

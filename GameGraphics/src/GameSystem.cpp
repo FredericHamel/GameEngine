@@ -4,6 +4,8 @@
 using std::cout;
 using std::endl;
 
+using ugen::GameSystem;
+
 GameSystem GameSystem::gameSystem;
 
 // Initialise le video par default

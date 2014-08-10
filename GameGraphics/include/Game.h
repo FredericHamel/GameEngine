@@ -7,7 +7,7 @@
 #include "GameTime.h"
 #include "GraphicManager.h"
 
-class Game
+class ugen::Game
 {
     public:
         Game();
@@ -16,16 +16,16 @@ class Game
 		virtual void Initialize();
         virtual void LoadContent();
         virtual void UnloadContent();
-        virtual void Update(GameTime&);
-        virtual void Draw(GameTime&);
+        virtual void Update(ugen::GameTime&);
+        virtual void Draw(ugen::GameTime&);
         
         void Exit();
 
         bool getRunningState() const;
         bool getFixedTimeState() const;
 	protected:
-		void AddComponent(GameComponent*);
-		GraphicManager* getGestionGraphics() const;
+		void AddComponent(ugen::GameComponent*);
+		ugen::GraphicManager* getGestionGraphics() const;
 
 
 		// To implements
@@ -41,8 +41,8 @@ class Game
 		bool isRunning;
 		bool isFixedTime;
 
-		GameComponentList components;
-		GraphicManager* gestionGraphics_;
+		ugen::GameComponentList components;
+		ugen::GraphicManager* gestionGraphics_;
 };
 
 #endif // GAME_H

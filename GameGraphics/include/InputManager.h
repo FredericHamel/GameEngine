@@ -3,12 +3,12 @@
 
 #include "Common.h"
 
-class InputManager
+class ugen::InputManager
 {
 public:
 	InputManager() = delete;
-	static bool PollEvent(GameEvent*);
-	static void WaitEvent(GameEvent*);
+	static bool PollEvent(ugen::GameEvent*);
+	static void WaitEvent(ugen::GameEvent*);
 };
 
 #endif // INPUT_MANAGER_H

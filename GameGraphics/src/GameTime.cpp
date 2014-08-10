@@ -1,6 +1,11 @@
 #include "GameTime.h"
 #include <sys/time.h>
 
+using ugen::GameTime;
+
+static const float MILLI_PER_SEC = 1000.0f;
+static const float MICRO_PER_MILLI = 1000.0f;
+
 // Definition of class
 GameTime GameTime::gameTime_;
 
@@ -12,34 +17,38 @@ GameTime* GameTime::getInstance()
 GameTime::GameTime()
 {
 	begin_ = 0;
-	elapsedTimeMillisecond_ = 0;
+	end_ = 0;
+	elapsedTimeMilliseconds_ = 0;
 }
 
 GameTime::~GameTime()
 {
 }
 
-void GameTime::Start()
+void GameTime::Init()
 {
 	struct timeval now;
 	gettimeofday(&now, 0);
-	begin_ = now.tv_sec * 1000 + now.tv_usec / 1000;
+	begin_ = now.tv_sec * 1000.0 + now.tv_usec / 1000.0;
+	end_ = begin_;
 }
 
-float GameTime::getElapsedTimeSecond() const
+double GameTime::getElapsedTimeSecond() const
 {
-	return this->elapsedTimeMillisecond_ / 1000.0f;
+	return this->elapsedTimeMilliseconds_ / 1000.0;
 }
 
-float GameTime::getElapsedTimeMillisecond() const
+double GameTime::getElapsedTimeMillisecond() const
 {
-	return this->elapsedTimeMillisecond_;
+	return this->elapsedTimeMilliseconds_;
 }
 
-void GameTime::Stop()
+void GameTime::Update()
 {
 	struct timeval now;
 	gettimeofday(&now, 0);
-	elapsedTimeMillisecond_ = now.tv_sec * 1000 + now.tv_usec / 1000 - begin_;
+	end_ = now.tv_sec * 1000.0 + now.tv_usec / 1000.0;
+	elapsedTimeMilliseconds_ = end_ - begin_;
+	begin_ = end_;
 }
 

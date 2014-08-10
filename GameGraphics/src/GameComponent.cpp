@@ -2,6 +2,10 @@
 #include "Game.h"
 #include "GameTime.h"
 
+using ugen::Game;
+using ugen::GameComponent;
+using ugen::GameTime;
+
 /**
  * @brief construct the class.
  * @param game is a pointer to the main class Game.

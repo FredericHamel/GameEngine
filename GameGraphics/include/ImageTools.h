@@ -5,13 +5,13 @@
 #include "Common.h"
 #include "Sprite.h"
 
-class ImageTools
+class ugen::ImageTools
 {
 public:
 	ImageTools() = delete;
 	static void Init();
-	static Sprite* Load(const std::string&);
-	static void Unload(Sprite*);
+	static ugen::Sprite* Load(const std::string&);
+	static void Unload(ugen::Sprite*);
 	static void Quit();
 };
 

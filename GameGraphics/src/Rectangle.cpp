@@ -1,5 +1,7 @@
 #include "Rectangle.h"
 
+using ugen::Rectangle;
+
 Rectangle::Rectangle(Point2D p, int w, int h)
 	:position_(p)
 {

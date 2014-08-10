@@ -2,6 +2,9 @@
 #include "Game.h"
 #include "GameTime.h"
 
+using ugen::Game;
+using ugen::DrawableGameComponent;
+
 /**
  * @brief basic construction of a DrawableGameComponent
  */

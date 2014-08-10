@@ -9,6 +9,12 @@ void Debug::init(std::string filename)
 	LOG_FILE_NAME = filename;
 }
 
+void Debug::reset()
+{
+	std::ofstream out(LOG_FILE_NAME);
+	out.close();
+}
+
 void Debug::check_assertion(bool expr, const StringConcat& str)
 {
 	if(expr)

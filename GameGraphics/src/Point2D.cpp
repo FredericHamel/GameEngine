@@ -1,6 +1,8 @@
 #include "Point2D.h"
 #include "cmath"
 
+using ugen::Point2D;
+
 Point2D::Point2D(int x, int y)
 	:x_(x), y_(y)
 {
@@ -97,7 +99,7 @@ Point2D Point2D::operator-(const Point2D& p) const
 	return Point2D(this->getX() - p.getX(), this->getY() - p.getY());
 }
 
-std::ostream& operator<<(std::ostream& out, const Point2D& p)
+std::ostream& ugen::operator<<(std::ostream& out, const Point2D& p)
 {
 	out << "(" << p.getX() << ", " << p.getY() << ")";
 	return out;

@@ -1,6 +1,7 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+
 // Type
 #include <cstdint>
 
@@ -17,23 +18,37 @@
 
 #include "Debug.h"
 
-class FileTools;
-class ImageTools;
+#pragma GCC visibility push(default)
+namespace ugen
+{
+	class FileTools;
+	class ImageTools;
 
-class Game;
-class GameTime;
-class GameWindow;
-class GameComponent;
-class DrawableGameComponent;
+	class Game;
+	class GameTime;
+	class GameWindow;
+	class GameComponent;
+	class DrawableGameComponent;
 
-class Sprite;
-class SpriteAnimation;
+	class Sprite;
+	class SpriteFont;
+	class SpriteAnimation;
 
-class GameSystem;
-class GraphicManager;
-class InputManager;
+	class GameSystem;
+	class GraphicManager;
+	class InputManager;
 
-typedef SDL_Event GameEvent;
-typedef std::vector<GameComponent*> GameComponentList;
+	class Color;
+	class Point2D;
+	class ColoredPoint2D;
+	class Rectangle;
+
+	typedef SDL_Event GameEvent;
+	typedef std::vector<GameComponent*> GameComponentList;
+
+	extern std::ostream& operator<<(const std::ostream&, const Point2D&);
+}
+#pragma GCC visibility pop
 
 #endif
+

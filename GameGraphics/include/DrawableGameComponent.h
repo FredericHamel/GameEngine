@@ -4,13 +4,13 @@
 #include "Common.h"
 #include "GameComponent.h"
 
-class DrawableGameComponent : public GameComponent
+class ugen::DrawableGameComponent : public ugen::GameComponent
 {
 	public:
-		DrawableGameComponent(const Game&);
+		DrawableGameComponent(const ugen::Game&);
 		virtual ~DrawableGameComponent();
 		virtual void Initialize();
-		virtual void Draw(const GameTime&) = 0;
+		virtual void Draw(const ugen::GameTime&) = 0;
 
 		bool Visible;
 };

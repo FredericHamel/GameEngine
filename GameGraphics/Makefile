@@ -512,6 +512,30 @@ src/Sprite.cpp.s:
 	$(MAKE) -f CMakeFiles/GameGraphics.dir/build.make CMakeFiles/GameGraphics.dir/src/Sprite.cpp.s
 .PHONY : src/Sprite.cpp.s
 
+src/SpriteFont.o: src/SpriteFont.cpp.o
+.PHONY : src/SpriteFont.o
+
+# target to build an object file
+src/SpriteFont.cpp.o:
+	$(MAKE) -f CMakeFiles/GameGraphics.dir/build.make CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.o
+.PHONY : src/SpriteFont.cpp.o
+
+src/SpriteFont.i: src/SpriteFont.cpp.i
+.PHONY : src/SpriteFont.i
+
+# target to preprocess a source file
+src/SpriteFont.cpp.i:
+	$(MAKE) -f CMakeFiles/GameGraphics.dir/build.make CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.i
+.PHONY : src/SpriteFont.cpp.i
+
+src/SpriteFont.s: src/SpriteFont.cpp.s
+.PHONY : src/SpriteFont.s
+
+# target to generate assembly for a file
+src/SpriteFont.cpp.s:
+	$(MAKE) -f CMakeFiles/GameGraphics.dir/build.make CMakeFiles/GameGraphics.dir/src/SpriteFont.cpp.s
+.PHONY : src/SpriteFont.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -570,6 +594,9 @@ help:
 	@echo "... src/Sprite.o"
 	@echo "... src/Sprite.i"
 	@echo "... src/Sprite.s"
+	@echo "... src/SpriteFont.o"
+	@echo "... src/SpriteFont.i"
+	@echo "... src/SpriteFont.s"
 .PHONY : help
 
 

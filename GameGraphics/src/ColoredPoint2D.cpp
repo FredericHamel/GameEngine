@@ -1,5 +1,9 @@
 #include "ColoredPoint2D.h"
 
+using ugen::Color;
+using ugen::Point2D;
+using ugen::ColoredPoint2D;
+
 ColoredPoint2D::ColoredPoint2D(int32_t x, int32_t y, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 	:Point2D(x, y), Color(r,g,b,a)
 {

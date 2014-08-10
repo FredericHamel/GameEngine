@@ -1,5 +1,7 @@
 #include "InputManager.h"
 
+using ugen::InputManager;
+
 bool InputManager::PollEvent(GameEvent* event)
 {
 	return SDL_PollEvent(event);

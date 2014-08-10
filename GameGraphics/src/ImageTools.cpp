@@ -2,6 +2,9 @@
 #include "FileTools.h"
 #include <SDL/SDL_image.h>
 
+using ugen::Sprite;
+using ugen::ImageTools;
+
 void ImageTools::Init()
 {
 	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
