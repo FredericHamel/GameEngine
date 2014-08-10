@@ -106,6 +106,7 @@ GameTest_EXTERNAL_OBJECTS =
 bin/GameTest: CMakeFiles/GameTest.dir/src/Main.cc.o
 bin/GameTest: CMakeFiles/GameTest.dir/src/GameTest.cpp.o
 bin/GameTest: CMakeFiles/GameTest.dir/build.make
+bin/GameTest: /usr/lib/libSDL2_ttf.so
 bin/GameTest: CMakeFiles/GameTest.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable bin/GameTest"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GameTest.dir/link.txt --verbose=$(VERBOSE)

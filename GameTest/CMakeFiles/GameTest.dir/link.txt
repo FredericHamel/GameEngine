@@ -1,1 +1,1 @@
-/usr/bin/c++   --std=c++0x  -L../GameGraphics/lib CMakeFiles/GameTest.dir/src/Main.cc.o CMakeFiles/GameTest.dir/src/GameTest.cpp.o  -o bin/GameTest -rdynamic -lGameGraphics 
+/usr/bin/c++   -Wall --std=c++0x  -L../GameGraphics/lib CMakeFiles/GameTest.dir/src/Main.cc.o CMakeFiles/GameTest.dir/src/GameTest.cpp.o  -o bin/GameTest -rdynamic -lSDL2_ttf -lGameGraphics 

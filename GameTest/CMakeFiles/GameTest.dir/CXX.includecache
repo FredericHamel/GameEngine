@@ -65,8 +65,6 @@ Common.h
 ../GameGraphics/include/GameTime.h
 Common.h
 ../GameGraphics/include/Common.h
-cstdint
--
 
 ../GameGraphics/include/GameWindow.h
 Common.h
@@ -87,6 +85,8 @@ Common.h
 ../GameGraphics/include/Common.h
 
 ../GameGraphics/include/Point2D.h
+Common.h
+../GameGraphics/include/Common.h
 ostream
 -
 
@@ -102,6 +102,12 @@ Common.h
 Rectangle.h
 ../GameGraphics/include/Rectangle.h
 
+../GameGraphics/include/SpriteFont.h
+Common.h
+../GameGraphics/include/Common.h
+SDL2/SDL_ttf.h
+-
+
 ../GameGraphics/include/StringConcat.h
 sstream
 -
@@ -111,9 +117,9 @@ GameTest.h
 /home/frederic/Documents/Projet_CPP/ProjetGame/GameTest/src/GameTest.h
 InputManager.h
 /home/frederic/Documents/Projet_CPP/ProjetGame/GameTest/src/InputManager.h
+SpriteFont.h
+/home/frederic/Documents/Projet_CPP/ProjetGame/GameTest/src/SpriteFont.h
 complex
--
-iostream
 -
 
 include/GameTest.h

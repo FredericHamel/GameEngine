@@ -15,6 +15,7 @@ CMakeFiles/GameTest.dir/src/GameTest.cpp.o: ../GameGraphics/include/InputManager
 CMakeFiles/GameTest.dir/src/GameTest.cpp.o: ../GameGraphics/include/Point2D.h
 CMakeFiles/GameTest.dir/src/GameTest.cpp.o: ../GameGraphics/include/Rectangle.h
 CMakeFiles/GameTest.dir/src/GameTest.cpp.o: ../GameGraphics/include/Sprite.h
+CMakeFiles/GameTest.dir/src/GameTest.cpp.o: ../GameGraphics/include/SpriteFont.h
 CMakeFiles/GameTest.dir/src/GameTest.cpp.o: ../GameGraphics/include/StringConcat.h
 CMakeFiles/GameTest.dir/src/GameTest.cpp.o: src/GameTest.cpp
 CMakeFiles/GameTest.dir/src/GameTest.cpp.o: include/GameTest.h

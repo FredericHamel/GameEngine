@@ -16,6 +16,7 @@ CMakeFiles/GameTest.dir/src/GameTest.cpp.o
  ../GameGraphics/include/Point2D.h
  ../GameGraphics/include/Rectangle.h
  ../GameGraphics/include/Sprite.h
+ ../GameGraphics/include/SpriteFont.h
  ../GameGraphics/include/StringConcat.h
  /home/frederic/Documents/Projet_CPP/ProjetGame/GameTest/src/GameTest.cpp
  include/GameTest.h

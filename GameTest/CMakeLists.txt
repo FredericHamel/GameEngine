@@ -9,7 +9,7 @@ endif()
 set(CMAKE_MODULE_PATH "~/.config/Kitware/cmake/modules")
 include(${CMAKE_MODULE_PATH}/clean-all.cmake)
 
-set(CMAKE_CXX_FLAGS --std=c++0x)
+set(CMAKE_CXX_FLAGS "-Wall --std=c++0x")
 set(CMAKE_EXE_LINKER_FLAGS -L../GameGraphics/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -28,4 +28,4 @@ include_directories("include/"
 )
 
 add_executable(${CMAKE_PROJECT_NAME} ${source_file})
-target_link_libraries(${CMAKE_PROJECT_NAME} ${GAME_GRAPHICS_LIBRARY} ${SDL2_LIBRARY} GameGraphics)
+target_link_libraries(${CMAKE_PROJECT_NAME} ${GAME_GRAPHICS_LIBRARY} ${SDL2_LIBRARY} /usr/lib/libSDL2_ttf.so GameGraphics)
