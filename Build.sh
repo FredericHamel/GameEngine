@@ -26,11 +26,12 @@ compile(){
 			echo "\n$elem: Compilation Started...";
 			pushd $elem;
 			make;
-			popd
 			if [[ $? != 0 ]]; then
 				echo "Error..."
+				popd;
 				break;
-			fi
+			fi;
+			popd;
 		fi;
 	done;
 }
