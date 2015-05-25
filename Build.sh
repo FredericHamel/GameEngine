@@ -1,15 +1,9 @@
 #!/usr/bin/zsh
-current_dir=$(pwd)
-if (( $# == 0 ))
-then
-	project_path=$current_dir
-else
-	project_path=$1
-fi
-
+current_dir=`pwd`
+project_path=`pwd`
 run(){
 	if [[ ! ((-a ./GameTest/bin/GameTest)) ]]; then
-		project_path=$(pwd)
+		project_path=`pwd`
 		compile
 	fi
 	echo Running...
