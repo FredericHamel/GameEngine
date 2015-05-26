@@ -63,6 +63,10 @@ void GraphicManager::getWindowSize(int32_t* w, int32_t* h)
 	getWindow()->getWindowSize(*w, *h);
 }
 
+void GraphicManager::toggleSwapInterval() {
+	getWindow()->toggleSwapInterval();
+}
+
 void GraphicManager::beginProjection()
 {
 	glMatrixMode(GL_PROJECTION);
