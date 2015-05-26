@@ -46,22 +46,6 @@ void GameWindow::hide()
 	SDL_HideWindow(internal_window);
 }
 
-/**
- * Set swap interval,
- * @param interval
- *  0 for an immediate update.
- * 	1 for an update synchronized with vsync.
- */ 
-void GameWindow::setSwapInterval(int interval)
-{
-	SDL_GL_SetSwapInterval(interval);
-}
-
-void GameWindow::toggleSwapInterval()
-{
-	SDL_GL_SetSwapInterval(!SDL_GL_GetSwapInterval());
-}
-
 void GameWindow::toggleFullscreen()
 {
 	flags = (flags == 0) ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0;

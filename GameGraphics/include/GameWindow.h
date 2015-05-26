@@ -18,9 +18,6 @@ public:
 	void show();
 	void hide();
 	
-	void setSwapInterval(int);
-
-	void toggleSwapInterval();	
 	void toggleFullscreen();
 	
 	void minimize();
