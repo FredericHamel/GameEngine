@@ -40,14 +40,10 @@ void Game::Run()
 	gameTime->Init();
 	while(isRunning)
 	{
-		if(tempsEcouleDepuisMAJ >= intervalMAJ)
-		{
-			tempsEcouleDepuisMAJ = 0;
-		}
-		gameTime->Update();
-		Update(*gameTime);
-		tempsEcouleDepuisMAJ += gameTime->getElapsedTimeMillisecond();
 		Draw(*gameTime);
+		Update(*gameTime);
+		gameTime->Update();
+		tempsEcouleDepuisMAJ += gameTime->getElapsedTimeMillisecond();
 	}
 	UnloadContent();
 }
