@@ -23,6 +23,7 @@ Game::Game()
  */
 Game::~Game()
 {
+	delete gestionGraphics_;
 }
 
 /**
@@ -34,19 +35,19 @@ void Game::Run()
 	Initialize();
 	LoadContent();
 	
-	double IntervalMAJ = 1000.0 / 60.0;
-	double TempsEcouleDepuisMAJ = IntervalMAJ;
+	double intervalMAJ = 1000.0 / 60.0;
+	double tempsEcouleDepuisMAJ = 0.0;
 	gameTime->Init();
 	while(isRunning)
 	{
-		if(TempsEcouleDepuisMAJ >= IntervalMAJ)
+		if(tempsEcouleDepuisMAJ >= intervalMAJ)
 		{
-			Draw(*gameTime);
-			TempsEcouleDepuisMAJ = 0;
+			tempsEcouleDepuisMAJ = 0;
 		}
 		gameTime->Update();
 		Update(*gameTime);
-		TempsEcouleDepuisMAJ += gameTime->getElapsedTimeMillisecond();
+		tempsEcouleDepuisMAJ += gameTime->getElapsedTimeMillisecond();
+		Draw(*gameTime);
 	}
 	UnloadContent();
 }
