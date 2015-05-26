@@ -16,7 +16,7 @@ void FileTools::Init()
  * @param path is the new search path.
  * @param type is the append type (default push back)
  */
-void FileTools::AddSearchPath(const char* path, FileTools::TYPE_APPEND type = FileTools::SUFF_APPEND)
+void FileTools::AddSearchPath(const char* path, FileTools::TYPE_APPEND type)
 {
 	PHYSFS_addToSearchPath(path, type);
 }

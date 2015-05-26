@@ -2,7 +2,11 @@
 #define FILE_TOOLS_H
 
 #include "Common.h" 
-#include <physfs/physfs.h>
+#if _WIN32 || _WIN64
+ #include <physfs/physfs.h>
+#else
+ #include <physfs.h>
+#endif
 
 class ugen::FileTools
 {
@@ -16,7 +20,7 @@ private:
 	FileTools();
 public:
 	static void Init();
-	static void AddSearchPath(const char*, FileTools::TYPE_APPEND);
+	static void AddSearchPath(const char*, FileTools::TYPE_APPEND=FileTools::SUFF_APPEND);
 	static void LoadFileBuffer(const std::string&, size_t*, char**);
 	static void UnloadFileBuffer(char **);
 	static void Quit();
