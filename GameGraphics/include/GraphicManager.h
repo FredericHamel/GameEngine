@@ -16,7 +16,6 @@ public:
 	
 	void Init();
 	void toggleFullscreen();
-	void toggleSwapInterval();
 	void getWindowSize(int32_t* w, int32_t* h);
 
 	// Set Matrix mode
