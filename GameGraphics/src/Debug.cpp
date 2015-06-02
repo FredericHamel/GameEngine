@@ -26,7 +26,7 @@ void Debug::check_assertion(bool expr, const StringConcat& str)
 void Debug::error(const StringConcat& str)
 {
 	std::ofstream out(LOG_FILE_NAME, std::ios::app);
-	out << "Fatal error: " << str << '\n';
+	out << "[ ERROR ] " << str << '\n';
 	out.close();
 	std::abort();
 }
@@ -34,13 +34,13 @@ void Debug::error(const StringConcat& str)
 void Debug::warning(const StringConcat& str)
 {
 	std::ofstream out(LOG_FILE_NAME, std::ios::app);
-	out << "Warning: " << str << '\n';
+	out << "[WARNING] " << str << '\n';
 	out.close();
 }
 
 void Debug::log(const StringConcat& str)
 {
 	std::ofstream out(LOG_FILE_NAME, std::ios::app);
-	out << str << '\n';
+	out << "[  LOG  ] "<< str << '\n';
 	out.close();
 }
