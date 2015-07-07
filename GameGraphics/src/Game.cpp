@@ -64,7 +64,6 @@ GraphicManager* Game::getGestionGraphics() const
 void Game::Initialize()
 {
 	GameSystem::Init(); // initialise le video.
-	FileTools::Init();
 	gestionGraphics_->Init();
 	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 	{
@@ -89,7 +88,6 @@ void Game::LoadContent()
  */
 void Game::UnloadContent()
 {
-	FileTools::Quit();
 	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 	{
 		delete *it;
