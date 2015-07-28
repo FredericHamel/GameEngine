@@ -43,14 +43,14 @@ void GameComponent::setGame(const Game& game)
 /**
  * @brief basic initialization of a component.
  */
-void GameComponent::Initialize()
+void GameComponent::initialize()
 {
-	Enabled = true;
 }
 
 /**
  * @brief Unload the logics.
  */
-void GameComponent::UnloadContent()
+void GameComponent::unloadContent()
 {
 }
+
