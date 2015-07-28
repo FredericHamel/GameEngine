@@ -1,6 +1,7 @@
 #!/usr/bin/zsh
 current_dir=`pwd`
 project_path=`pwd`
+
 run(){
 	if [[ ! ((-a ./GameTest/bin/GameTest)) ]]; then
 		project_path=`pwd`
@@ -46,11 +47,17 @@ clean(){
 #	zsh -i $(./Build.sh 10);
 # fi;
 
+case $1 in
+	build)
+		compile
+		;;
+	clean)
+		clean
+		;;
+	run)
+		run
+		;;
+	*)
+		echo "Usage: $0 [build|run|clean]"
+esac
 
-if [[ $1 == "clean" ]]; then
-	clean
-elif [[ $1 == "run" ]]; then
-	run
-else
-	compile
-fi
