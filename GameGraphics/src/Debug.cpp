@@ -28,7 +28,6 @@ void Debug::error(const StringConcat& str)
 	std::ofstream out(LOG_FILE_NAME, std::ios::app);
 	out << "[ ERROR ] " << str << '\n';
 	out.close();
-	std::abort();
 }
 
 void Debug::warning(const StringConcat& str)
