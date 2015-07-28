@@ -9,8 +9,8 @@ class ugen::GameSystem
 public:
 	~GameSystem();
 
-	static void Init();
-	static void Init(uint32_t);
+	static void init();
+	static void init(uint32_t);
 private:
 	static ugen::GameSystem gameSystem;
 };

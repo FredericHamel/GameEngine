@@ -9,11 +9,11 @@ using ugen::GameSystem;
 GameSystem GameSystem::gameSystem;
 
 // Initialise le video par default
-void GameSystem::Init()
+void GameSystem::init()
 {
 }
 
-void GameSystem::Init(uint32_t flags)
+void GameSystem::init(uint32_t flags)
 {
 	if(SDL_WasInit(flags) == flags)
 	{
