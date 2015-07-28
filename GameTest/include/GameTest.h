@@ -10,11 +10,11 @@ class GameTest: public Game
 public:
 	GameTest();
 	virtual ~GameTest();
-	virtual void Initialize();
-	virtual void LoadContent();
-	virtual void UnloadContent();
-	virtual void Update(GameTime&);
-	virtual void Draw(GameTime&);
+	virtual void initialize();
+	virtual void loadContent();
+	virtual void unloadContent();
+	virtual void update(GameTime&);
+	virtual void draw(GameTime&);
 private:
 	std::vector<ColoredPoint2D*> listPoint;
 	SpriteFont* fontLoader;

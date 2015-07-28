@@ -5,6 +5,19 @@
 #include <complex>
 #include <iostream>
 
+#define GL_GLEXT_PROTOTYPES
+#include <GL/gl.h>
+
+static float vertices[] = {
+	-0.5f, 0.0f, 0.0f,
+	0.5f, 0.0f, 0.0f,
+	0.0f, 0.5f, 0.0f
+};
+
+unsigned int g_index[] = { 1, 2, 3 };
+
+static GLuint vao, vbo, ibo;
+
 GameTest::GameTest()
 {
 	Debug::reset();
@@ -12,13 +25,14 @@ GameTest::GameTest()
 
 GameTest::~GameTest()
 {
+	
 }
 
-void GameTest::Initialize()
+void GameTest::initialize()
 {
 	size_t size;
 	char *data;
-	Game::Initialize();
+	Game::initialize();
 	FileTools::Init();
 	FileTools::AddSearchPath(".");
 	FileTools::LoadFileBuffer("README.md", &size, &data);
@@ -29,20 +43,32 @@ void GameTest::Initialize()
 	getGestionGraphics()->pushCurrentMatrix();
 }
 
-void GameTest::LoadContent()
+void GameTest::loadContent()
 {
-	Game::LoadContent();
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+	glGenBuffers(1, &vbo );
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) * sizeof(float), vertices, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	
+	// IBO
+	glGenBuffers(1, &ibo );
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(g_index)/sizeof(unsigned int), g_index, GL_STATIC_DRAW);
+	Game::loadContent();
 }
 
-void GameTest::UnloadContent()
+void GameTest::unloadContent()
 {
 	FileTools::Quit();
-	Game::UnloadContent();
+	Game::unloadContent();
 }
 
 int fps = 0;
 float tempsEcoule = 0.0f;
-void GameTest::Update(GameTime& gameTime)
+void GameTest::update(GameTime& gameTime)
 {
 	tempsEcoule += (float)gameTime.getElapsedTimeMillisecond();
 	if(tempsEcoule >= 1000.0f)
@@ -63,18 +89,19 @@ void GameTest::Update(GameTime& gameTime)
 						getGestionGraphics()->toggleSwapInterval();
 						break;
 					case SDLK_ESCAPE:
-						Game::Exit();
+						Game::exit();
 						break;
 				}
 				break;
 		}
 	}
-	Game::Update(gameTime);
+	Game::update(gameTime);
 }
 
-void GameTest::Draw(GameTime& gameTime)
+void GameTest::draw(GameTime& gameTime)
 {
 	++fps;
-	Game::Draw(gameTime);
+	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
+	Game::draw(gameTime);
 }
 
