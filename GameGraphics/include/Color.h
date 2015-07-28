@@ -92,7 +92,7 @@ public:
 		YELLOW_GREEN = 0x94CD32,
 		WHITE = 0xFFFFFF
 	};
-	
+
 	Color(uint8_t, uint8_t, uint8_t, uint8_t=255);
 	Color(ugen::Color::Palette);
 	uint8_t getRed() const;
@@ -102,7 +102,10 @@ public:
 	virtual ~Color();
 private:
 	void setRGBA(uint8_t, uint8_t, uint8_t, uint8_t);
-	uint8_t r, g, b, a;
+	union {
+		struct { uint8_t r, g, b, a; };
+		uint8_t data[4];
+	};
 };
 
 inline uint8_t ugen::Color::getRed() const
