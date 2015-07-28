@@ -26,7 +26,7 @@ public:
 	void minimize();
 	void maximize();
 
-	void UpdateDraw();
+	void updateDraw();
 private:
 	SDL_Window* getInternalWindow() const;
 #ifndef GRAPHIC_MANAGER_H

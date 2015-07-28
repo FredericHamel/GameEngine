@@ -15,8 +15,8 @@ public:
 	// Get unique instance
 	static ugen::GameTime* getInstance();
 
-	void Init();
-	void Update();
+	void init();
+	void update();
 private:
 	static ugen::GameTime gameTime_;
 

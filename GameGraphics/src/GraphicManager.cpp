@@ -35,7 +35,7 @@ GraphicManager::~GraphicManager()
 	delete window_;
 }
 
-void GraphicManager::Init()
+void GraphicManager::init()
 {
 	int32_t w, h;
 	getWindow()->getWindowSize(w, h);
@@ -159,13 +159,13 @@ void GraphicManager::toggleFullscreen()
 /**
  * @brief 
  */
-void GraphicManager::Clear(float r, float g, float b, float a)
+void GraphicManager::clear(float r, float g, float b, float a)
 {
 	glClearColor(r, g, b, a);
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void GraphicManager::Draw(const Sprite* const sprite, const Rectangle* const src, const Rectangle* const dst) const
+void GraphicManager::draw(const Sprite* const sprite, const Rectangle* const src, const Rectangle* const dst) const
 {
 	if(src == 0)
 	{
@@ -205,18 +205,18 @@ void GraphicManager::Draw(const Sprite* const sprite, const Rectangle* const src
 	}
 }
 
-void GraphicManager::DrawString(const SpriteFont *const font, std::string text, const Point2D* const p, Color fg)
+void GraphicManager::drawString(const SpriteFont *const font, std::string text, const Point2D* const p, Color fg)
 {
 	Sprite* sprite = font->renderText(text, fg);
 	if(sprite != NULL)
 	{
 		Rectangle rect(*p, sprite->getWidth(), sprite->getHeight());
-		Draw(sprite, NULL, &rect);
+		draw(sprite, NULL, &rect);
 		delete sprite;
 	}
 }
 
-void GraphicManager::DrawPoint2D(std::vector<ColoredPoint2D*> list) const
+void GraphicManager::drawPoint2D(std::vector<ColoredPoint2D*> list) const
 {
 	glBegin(GL_POINTS);
 		for(auto it = list.begin(); it != list.end(); ++it)
@@ -226,7 +226,7 @@ void GraphicManager::DrawPoint2D(std::vector<ColoredPoint2D*> list) const
 	glEnd();
 }
 
-void GraphicManager::DrawRect(const Rectangle* const rect, const Color* const color) const
+void GraphicManager::drawRect(const Rectangle* const rect, const Color* const color) const
 {
 	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
@@ -239,7 +239,7 @@ void GraphicManager::DrawRect(const Rectangle* const rect, const Color* const co
 	glEnable(GL_TEXTURE_2D);
 }
 
-void GraphicManager::EndDraw()
+void GraphicManager::endDraw()
 {
-	getWindow()->UpdateDraw();
+	getWindow()->updateDraw();
 }

@@ -78,7 +78,7 @@ void GameWindow::maximize()
 	SDL_MaximizeWindow(internal_window);
 }
 
-void GameWindow::UpdateDraw()
+void GameWindow::updateDraw()
 {
 	SDL_GL_SwapWindow(internal_window);
 }

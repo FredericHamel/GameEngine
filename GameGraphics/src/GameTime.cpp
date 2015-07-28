@@ -25,7 +25,7 @@ GameTime::~GameTime()
 {
 }
 
-void GameTime::Init()
+void GameTime::init()
 {
 	struct timeval now;
 	gettimeofday(&now, 0);
@@ -43,7 +43,7 @@ double GameTime::getElapsedTimeMillisecond() const
 	return this->elapsedTimeMilliseconds_;
 }
 
-void GameTime::Update()
+void GameTime::update()
 {
 	struct timeval now;
 	gettimeofday(&now, 0);

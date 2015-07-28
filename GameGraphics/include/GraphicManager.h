@@ -14,7 +14,7 @@ public:
 	GraphicManager(std::string, int32_t, int32_t, int32_t, int32_t);
 	~GraphicManager();
 	
-	void Init();
+	void init();
 	void toggleFullscreen();
 	void toggleSwapInterval();
 	void getWindowSize(int32_t* w, int32_t* h);
@@ -41,12 +41,12 @@ public:
 	void scaled(double, double, double);
 
 	// Color RGB
-	void Clear(float, float, float, float);
-	void Draw(const ugen::Sprite* const, const ugen::Rectangle* const, const ugen::Rectangle* const) const;
-	void DrawString(const ugen::SpriteFont* const, std::string, const ugen::Point2D* const, Color);
-	void DrawPoint2D(std::vector<ColoredPoint2D*>) const;
-	void DrawRect(const ugen::Rectangle* const, const ugen::Color* const) const;
-	void EndDraw();
+	void clear(float, float, float, float);
+	void draw(const ugen::Sprite* const, const ugen::Rectangle* const, const ugen::Rectangle* const) const;
+	void drawString(const ugen::SpriteFont* const, std::string, const ugen::Point2D* const, Color);
+	void drawPoint2D(std::vector<ColoredPoint2D*>) const;
+	void drawRect(const ugen::Rectangle* const, const ugen::Color* const) const;
+	void endDraw();
 private:
 	ugen::GameWindow* getWindow() const;
 #ifndef GAME_H
