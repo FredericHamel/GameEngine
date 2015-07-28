@@ -29,26 +29,26 @@ Game::~Game()
 /**
  * @brief main game loop.
  */
-void Game::Run()
+void Game::run()
 {
 	GameTime *gameTime = GameTime::getInstance();
-	Initialize();
-	LoadContent();
+	initialize();
+	loadContent();
 	
 	double intervalMAJ = 1000.0 / 60.0;
 	double tempsEcouleDepuisMAJ = 0.0;
-	gameTime->Init();
+	gameTime->init();
 	while(isRunning)
 	{
-		Draw(*gameTime);
-		Update(*gameTime);
-		gameTime->Update();
+		draw(*gameTime);
+		update(*gameTime);
+		gameTime->update();
 		tempsEcouleDepuisMAJ += gameTime->getElapsedTimeMillisecond();
 	}
-	UnloadContent();
+	unloadContent();
 }
 
-void Game::AddComponent(GameComponent* component)
+void Game::addComponent(GameComponent* component)
 {
 	components.push_back(component);
 }
@@ -61,24 +61,24 @@ GraphicManager* Game::getGestionGraphics() const
 /**
  * @brief Initialize all components.
  */
-void Game::Initialize()
+void Game::initialize()
 {
-	GameSystem::Init(); // initialise le video.
-	gestionGraphics_->Init();
+	GameSystem::init(); // initialise le video.
+	gestionGraphics_->init();
 	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 	{
-		(*it)->Initialize();
+		(*it)->initialize();
 	}
 }
 
 /**
  * @brief load the resource.
  */
-void Game::LoadContent()
+void Game::loadContent()
 {
 	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 	{
-		(*it)->LoadContent();
+		(*it)->loadContent();
 	}
 	gestionGraphics_->getWindow()->show();
 }
@@ -86,7 +86,7 @@ void Game::LoadContent()
 /**
  * @brief Unload the resource loaded by LoadContent.
  */
-void Game::UnloadContent()
+void Game::unloadContent()
 {
 	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 	{
@@ -99,30 +99,30 @@ void Game::UnloadContent()
 /**
  * @brief Update the logic of the game.
  */
-void Game::Update(GameTime& gameTime)
+void Game::update(GameTime& gameTime)
 {
 	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 	{
-		if((*it)->Enabled)
-			(*it)->Update(gameTime);
+		if((*it)->isEnabled())
+			(*it)->update(gameTime);
 	}
 }
 
 /**
  * @brief Draw the DrawableGameComponent on the screen.
  */
-void Game::Draw(GameTime& gameTime)
+void Game::draw(GameTime& gameTime)
 {
 	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 	{
 		if(typeid(*it) == typeid(DrawableGameComponent))
 		{
 			DrawableGameComponent* tmp = (DrawableGameComponent*)(*it);
-			if(tmp->Visible)
-				tmp->Draw(gameTime);
+			if(tmp->isVisible())
+				tmp->draw(gameTime);
 		}
 	}
-	getGestionGraphics()->EndDraw();
+	getGestionGraphics()->endDraw();
 }
 
 /**
@@ -146,7 +146,7 @@ bool Game::getFixedTimeState() const
 /**
  * @brief Exit the game loop.
  */
-void Game::Exit()
+void Game::exit()
 {
 	isRunning = !isRunning;
 }

@@ -12,19 +12,19 @@ class ugen::Game
     public:
         Game();
         virtual ~Game();
-		virtual void Run();
-		virtual void Initialize();
-        virtual void LoadContent();
-        virtual void UnloadContent();
-        virtual void Update(ugen::GameTime&);
-        virtual void Draw(ugen::GameTime&);
+				virtual void run();
+				virtual void initialize();
+        virtual void loadContent();
+        virtual void unloadContent();
+        virtual void update(ugen::GameTime&);
+        virtual void draw(ugen::GameTime&);
         
-        void Exit();
+        void exit();
 
         bool getRunningState() const;
         bool getFixedTimeState() const;
 	protected:
-		void AddComponent(ugen::GameComponent*);
+		void addComponent(ugen::GameComponent*);
 		ugen::GraphicManager* getGestionGraphics() const;
 
 
