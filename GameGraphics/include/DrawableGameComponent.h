@@ -9,10 +9,24 @@ class ugen::DrawableGameComponent : public ugen::GameComponent
 	public:
 		DrawableGameComponent(const ugen::Game&);
 		virtual ~DrawableGameComponent();
-		virtual void Initialize();
-		virtual void Draw(const ugen::GameTime&) = 0;
+		virtual void draw(const ugen::GameTime&) = 0;
 
-		bool Visible;
+		inline bool isVisible() const;
+		inline void setVisible(bool);
+	private:
+		bool visible;
 };
+
+inline
+bool ugen::DrawableGameComponent::isVisible() const
+{
+	return this->visible;
+}
+
+inline
+void ugen::DrawableGameComponent::setVisible(bool visible)
+{
+	this->visible = visible;
+}
 
 #endif

@@ -11,6 +11,7 @@ using ugen::DrawableGameComponent;
 DrawableGameComponent::DrawableGameComponent(const Game& game)
 	:GameComponent::GameComponent(game)
 {
+	this->setVisible(true);
 }
 
 /**
@@ -20,11 +21,5 @@ DrawableGameComponent::~DrawableGameComponent()
 {
 }
 
-/**
- * @brief initialize a drawable game component.
- */
-void DrawableGameComponent::Initialize()
-{
-	Visible = true;
-	GameComponent::Initialize();
-}
+
+
