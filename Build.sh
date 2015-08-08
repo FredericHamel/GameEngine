@@ -48,7 +48,7 @@ clean(){
 # fi;
 
 case $1 in
-	build)
+	compile)
 		compile
 		;;
 	clean)
@@ -58,6 +58,6 @@ case $1 in
 		run
 		;;
 	*)
-		echo "Usage: $0 [build|run|clean]"
+		echo "Usage: $0 [compile|run|clean]"
 esac
 
