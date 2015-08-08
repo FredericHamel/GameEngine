@@ -36,7 +36,7 @@ class ugen::Game
 		void toggleMouseVisible();
 		void toggleFixedTimeState();
 		*/
-    private:
+	private:
 		bool mouseVisible_;
 		bool isRunning;
 		bool isFixedTime;

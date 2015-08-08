@@ -10,7 +10,7 @@ using ugen::GameTime;
  * @brief construct the class.
  * @param game is a pointer to the main class Game.
  */
-GameComponent::GameComponent(const Game& game)
+GameComponent::GameComponent(const Game* game)
 {
 	this->setGame(game);
 }
@@ -26,7 +26,7 @@ GameComponent::~GameComponent()
   * @brief get value of the game_ pointer.
   * @return game_
   */
-const Game* const GameComponent::getGame()
+const Game* GameComponent::getGame() const
 {
 	return game_;
 }
@@ -35,9 +35,9 @@ const Game* const GameComponent::getGame()
  * @brief set value of the game_ pointer.
  * @param game is a pointer to the main class.
  */
-void GameComponent::setGame(const Game& game)
+void GameComponent::setGame(const Game* game)
 {
-	*game_ = game;
+	game_ = game;
 }
 
 /**

@@ -23,7 +23,6 @@ Game::Game()
  */
 Game::~Game()
 {
-	delete gestionGraphics_;
 }
 
 /**

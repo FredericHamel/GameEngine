@@ -6,7 +6,7 @@
 class ugen::GameComponent
 {
 	public:
-		GameComponent(const ugen::Game&);
+		GameComponent(const ugen::Game*);
 		virtual ~GameComponent();
 		virtual void initialize();
 		virtual void loadContent() = 0;
@@ -16,12 +16,12 @@ class ugen::GameComponent
 		inline void setEnable(bool);
 		inline bool isEnabled() const;
 	private:
-		void setGame(const ugen::Game&);
+		void setGame(const ugen::Game*);
 	protected:
-		const ugen::Game* const getGame();
+		const ugen::Game* getGame() const;
 	private:
 		bool enable;
-		Game* game_;
+		const Game* game_;
 };
 
 inline

@@ -7,7 +7,7 @@
 class ugen::DrawableGameComponent : public ugen::GameComponent
 {
 	public:
-		DrawableGameComponent(const ugen::Game&);
+		DrawableGameComponent(const ugen::Game*);
 		virtual ~DrawableGameComponent();
 		virtual void draw(const ugen::GameTime&) = 0;
 
