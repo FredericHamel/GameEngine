@@ -228,7 +228,6 @@ void GraphicManager::drawPoint2D(std::vector<ColoredPoint2D*> list) const
 
 void GraphicManager::drawRect(const Rectangle* const rect, const Color* const color) const
 {
-	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
 		glColor3f(color->getRed() / 255.0f, color->getGreen() / 255.0f, color->getBlue() / 255.0f);
 		glVertex3i(rect->getX(), rect->getY(), 0);
@@ -236,7 +235,6 @@ void GraphicManager::drawRect(const Rectangle* const rect, const Color* const co
 		glVertex3i(rect->getX() + rect->getWidth(), rect->getY() + rect->getHeight(), 0);
 		glVertex3i(rect->getX(), rect->getY() + rect->getHeight(), 0);
 	glEnd();
-	glEnable(GL_TEXTURE_2D);
 }
 
 void GraphicManager::endDraw()
