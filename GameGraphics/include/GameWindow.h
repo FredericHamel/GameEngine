@@ -10,7 +10,7 @@ public:
 	~GameWindow();
 	
 	void setWindowSize(int32_t, int32_t);
-	void getWindowSize(int32_t&, int32_t&);
+	void getWindowSize(int32_t&, int32_t&) const;
 
 	void setWindowTitle(std::string);
 	const char* getWindowTitle() const;
