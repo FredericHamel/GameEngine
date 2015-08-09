@@ -34,15 +34,12 @@ void Game::run()
 	initialize();
 	loadContent();
 	
-	double intervalMAJ = 1000.0 / 60.0;
-	double tempsEcouleDepuisMAJ = 0.0;
 	gameTime->init();
 	while(isRunning)
 	{
 		draw(*gameTime);
 		update(*gameTime);
 		gameTime->update();
-		tempsEcouleDepuisMAJ += gameTime->getElapsedTimeMillisecond();
 	}
 	unloadContent();
 }
@@ -114,12 +111,9 @@ void Game::draw(GameTime& gameTime)
 {
 	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 	{
-		if(typeid(*it) == typeid(DrawableGameComponent))
-		{
-			DrawableGameComponent* tmp = (DrawableGameComponent*)(*it);
-			if(tmp->isVisible())
+		DrawableGameComponent* tmp = dynamic_cast<DrawableGameComponent*>(*it);
+		if(tmp != nullptr && tmp->isVisible())
 				tmp->draw(gameTime);
-		}
 	}
 	getGestionGraphics()->endDraw();
 }
