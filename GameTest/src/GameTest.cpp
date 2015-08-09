@@ -21,7 +21,6 @@ static GLuint vao, vbo, ibo;
 
 GameTest::GameTest()
 {
-	Debug::reset();
 }
 
 GameTest::~GameTest()
