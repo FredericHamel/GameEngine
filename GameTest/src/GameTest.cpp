@@ -2,6 +2,7 @@
 #include "InputManager.h"
 #include "SpriteFont.h"
 #include "FileTools.h"
+#include "FPS.h"
 #include <complex>
 #include <iostream>
 
@@ -32,7 +33,9 @@ void GameTest::initialize()
 {
 	size_t size;
 	char *data;
-	Game::initialize();
+	
+	this->addComponent(new FPS(this, 1000.0f));
+
 	FileTools::Init();
 	FileTools::AddSearchPath(".");
 	FileTools::LoadFileBuffer("README.md", &size, &data);
@@ -41,6 +44,7 @@ void GameTest::initialize()
 	FileTools::UnloadFileBuffer(&data);
 	getGestionGraphics()->beginProjection();
 	getGestionGraphics()->pushCurrentMatrix();
+	Game::initialize();
 }
 
 void GameTest::loadContent()
@@ -49,14 +53,14 @@ void GameTest::loadContent()
 	glBindVertexArray(vao);
 	glGenBuffers(1, &vbo );
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) * sizeof(float), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	
 	// IBO
 	glGenBuffers(1, &ibo );
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(g_index)/sizeof(unsigned int), g_index, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(g_index), g_index, GL_STATIC_DRAW);
 	Game::loadContent();
 }
 
@@ -66,18 +70,8 @@ void GameTest::unloadContent()
 	Game::unloadContent();
 }
 
-int fps = 0;
-float tempsEcoule = 0.0f;
 void GameTest::update(GameTime& gameTime)
 {
-	tempsEcoule += (float)gameTime.getElapsedTimeMillisecond();
-	if(tempsEcoule >= 1000.0f)
-	{
-		std::cout << "FPS: " << fps << std::endl;
-		tempsEcoule-=1000.0f;
-		fps = 0;
-	}
-
 	while(InputManager::PollEvent(&event))
 	{
 		switch(event.type)
@@ -100,8 +94,9 @@ void GameTest::update(GameTime& gameTime)
 
 void GameTest::draw(GameTime& gameTime)
 {
-	++fps;
+	getGestionGraphics()->clear(0.0f,0.0f,0.4f,0.0f);
 	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
+	
 	Game::draw(gameTime);
 }
 
