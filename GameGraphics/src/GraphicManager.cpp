@@ -15,16 +15,20 @@ const int32_t DEFAULT_HEIGHT = 480;
  * @brief create the Graphic manager with a inner window.
  */
 GraphicManager::GraphicManager()
+	:window_(DEFAULT_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DEFAULT_WIDTH, DEFAULT_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN)
 {
-	window_ = new GameWindow(DEFAULT_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DEFAULT_WIDTH, DEFAULT_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
+	Debug::log(StringConcat() << "Create GraphicManager: window.title = " << DEFAULT_TITLE);
+	//window_ = new GameWindow(DEFAULT_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DEFAULT_WIDTH, DEFAULT_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
 }
 
 /**
  * @brief
  */
 GraphicManager::GraphicManager(std::string title, int32_t x, int32_t y, int32_t w, int32_t h)
+	:window_(title.c_str(), x, y, w, h, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN)
 {
-	window_ = new GameWindow(title.c_str(), x, y, w, h, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
+	Debug::log(StringConcat() << "Create GraphicManager: window.title = " << title);
+	//window_ = new GameWindow(title.c_str(), x, y, w, h, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
 }
 
 /**
@@ -32,13 +36,15 @@ GraphicManager::GraphicManager(std::string title, int32_t x, int32_t y, int32_t 
  */
 GraphicManager::~GraphicManager()
 {
-	delete window_;
+	StringConcat str;
+	str << "Destroy GraphicManager: window.title = " << getWindow().getWindowTitle();
+	Debug::log(str);
 }
 
 void GraphicManager::init()
 {
 	int32_t w, h;
-	getWindow()->getWindowSize(w, h);
+	getWindow().getWindowSize(w, h);
 	glShadeModel(GL_SMOOTH);
 	
 	glDisable(GL_DEPTH_TEST);
@@ -58,13 +64,13 @@ void GraphicManager::init()
 	glClearColor(0.0,0.0,0.0,1.0);
 }
 
-void GraphicManager::getWindowSize(int32_t* w, int32_t* h)
+void GraphicManager::getWindowSize(int32_t* w, int32_t* h) const
 {
-	getWindow()->getWindowSize(*w, *h);
+	getWindow().getWindowSize(*w, *h);
 }
 
 void GraphicManager::toggleSwapInterval() {
-	getWindow()->toggleSwapInterval();
+	window_.toggleSwapInterval();
 }
 
 void GraphicManager::beginProjection()
@@ -146,14 +152,14 @@ void GraphicManager::scaled(double x, double y, double z)
 /**
  * @brief
  */
-GameWindow* GraphicManager::getWindow() const
+const GameWindow& GraphicManager::getWindow() const
 {
 	return window_;
 }
 
 void GraphicManager::toggleFullscreen()
 {
-	getWindow()->toggleFullscreen();
+	window_.toggleFullscreen();
 }
 
 /**
@@ -239,5 +245,5 @@ void GraphicManager::drawRect(const Rectangle* const rect, const Color* const co
 
 void GraphicManager::endDraw()
 {
-	getWindow()->updateDraw();
+	window_.updateDraw();
 }

@@ -17,7 +17,7 @@ public:
 	void init();
 	void toggleFullscreen();
 	void toggleSwapInterval();
-	void getWindowSize(int32_t* w, int32_t* h);
+	void getWindowSize(int32_t* w, int32_t* h) const;
 
 	// Set Matrix mode
 	void beginProjection();
@@ -48,9 +48,9 @@ public:
 	void drawRect(const ugen::Rectangle* const, const ugen::Color* const) const;
 	void endDraw();
 private:
-	ugen::GameWindow* getWindow() const;
+	const ugen::GameWindow& getWindow() const;
 #ifndef GAME_H
-	ugen::GameWindow* window_;
+	ugen::GameWindow window_;
 #endif
 friend class ugen::Game;
 };
