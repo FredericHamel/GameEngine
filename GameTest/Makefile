@@ -4,12 +4,12 @@ SRC_CC:=${SRC_DIR}/%.cc
 SRC_CPP:=${SRC_DIR}/%.cpp
 SRC:=$(wildcard ${SRC_DIR}/*.cc) $(wildcard ${SRC_DIR}/*.cpp)
 
-EXEC:=GameTest
+EXEC=GameTest
 
-BIN_DIR:=bin
-BIN:=$(BIN_DIR)/$(EXEC)
+BIN_DIR=bin
+BIN=$(BIN_DIR)/$(EXEC)
 
-OBJ_DIR:=bin/obj
+OBJ_DIR=obj
 OBJ:=$(subst ${SRC_DIR}/,${OBJ_DIR}/,$(subst .cpp,.o,$(subst .cc,.cpp,${SRC})))
 
 INCLUDE_DIR:=include
@@ -17,11 +17,14 @@ INCLUDE:=$(INCLUDE_DIR)/%.h
 
 CFLAGS:=-O --std=c++0x -I../GameGraphics/include -I$(INCLUDE_DIR)
 
-all: $(OBJ_DIR) $(BIN)
+all: $(BIN_DIR) $(OBJ_DIR) $(BIN)
+
+$(BIN_DIR):
+	@mkdir $@
 
 # Directory tree building
 $(OBJ_DIR):
-	@mkdir -p $@
+	@mkdir  $@
 
 # Project building
 $(BIN): $(OBJ)
@@ -46,7 +49,7 @@ $(OBJ_DIR)/%.o: $(SRC_CPP) $(INCLUDE)
 
 .PHONY: clean rebuild
 clean:
-	@rm -rf $(BIN_DIR)
+	@rm -rf $(BIN_DIR) $(OBJ_DIR)
 
 rebuild_message: ; @echo "Rebuild ${EXEC}"
 
