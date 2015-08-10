@@ -76,7 +76,7 @@ void Game::loadContent()
 	{
 		(*it)->loadContent();
 	}
-	gestionGraphics_->getWindow()->show();
+	gestionGraphics_->show();
 }
 
 /**

@@ -18,7 +18,6 @@ GraphicManager::GraphicManager()
 	:window_(DEFAULT_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DEFAULT_WIDTH, DEFAULT_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN)
 {
 	Debug::log(StringConcat() << "Create GraphicManager: window.title = " << DEFAULT_TITLE);
-	//window_ = new GameWindow(DEFAULT_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DEFAULT_WIDTH, DEFAULT_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
 }
 
 /**
@@ -28,7 +27,6 @@ GraphicManager::GraphicManager(std::string title, int32_t x, int32_t y, int32_t 
 	:window_(title.c_str(), x, y, w, h, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN)
 {
 	Debug::log(StringConcat() << "Create GraphicManager: window.title = " << title);
-	//window_ = new GameWindow(title.c_str(), x, y, w, h, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
 }
 
 /**
@@ -36,9 +34,7 @@ GraphicManager::GraphicManager(std::string title, int32_t x, int32_t y, int32_t 
  */
 GraphicManager::~GraphicManager()
 {
-	StringConcat str;
-	str << "Destroy GraphicManager: window.title = " << getWindow().getWindowTitle();
-	Debug::log(str);
+	Debug::log(StringConcat() << "Destroy GraphicManager: window.title = " << getWindow().getWindowTitle());
 }
 
 void GraphicManager::init()
@@ -67,6 +63,10 @@ void GraphicManager::init()
 void GraphicManager::getWindowSize(int32_t* w, int32_t* h) const
 {
 	getWindow().getWindowSize(*w, *h);
+}
+
+void GraphicManager::show() {
+	window_.show();
 }
 
 void GraphicManager::toggleSwapInterval() {
@@ -169,6 +169,17 @@ void GraphicManager::clear(float r, float g, float b, float a)
 {
 	glClearColor(r, g, b, a);
 	glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void GraphicManager::draw(const Sprite* const sprite, int32_t x, int32_t y)
+{
+	glBindTexture(GL_TEXTURE_2D, sprite->getBuffer());
+	glBegin(GL_QUADS);
+		glTexCoord2f(0, 0);	glVertex3f(x, y, 0);
+		glTexCoord2f(1, 0);	glVertex3f(x + sprite->getWidth(), y, 0);
+		glTexCoord2f(1, 1);	glVertex3f(x + sprite->getWidth(), y + sprite->getHeight(), 0);
+		glTexCoord2f(0, 1);	glVertex3f(x, y + sprite->getHeight(), 0);
+	glEnd();	
 }
 
 void GraphicManager::draw(const Sprite* const sprite, const Rectangle* const src, const Rectangle* const dst) const
