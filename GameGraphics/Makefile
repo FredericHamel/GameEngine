@@ -36,6 +36,11 @@ $(OBJ_DIR)/%.o: $(SRC_CPP) $(INCLUDE)
 	@echo $< -\> $(subst $(OBJ_DIR)/,$(EMPTY),$@)
 	@g++ $(CFLAGS) -c $<  -o $@
 
-.PHONY: clean
+.PHONY: clean rebuild
 clean:
 	@rm -rf $(BIN_DIR)
+
+rebuild_message: ; @echo "Rebuild ${EXEC}"
+
+rebuild: rebuild_message clean all
+

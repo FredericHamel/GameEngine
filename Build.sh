@@ -1,10 +1,11 @@
 #!/usr/bin/zsh
 current_dir=`pwd`
 project_path=`pwd`
+subproject_dirs=(GameGraphics GameTest);
 
 run(){
 	if [[ ! ((-a ./GameTest/bin/GameTest)) ]]; then
-		project_path=`pwd`
+		#project_path=`pwd`
 		compile
 	fi
 	echo Running...
@@ -13,7 +14,6 @@ run(){
 }
 
 compile(){
-	subproject_dirs=(GameGraphics GameTest);
 	cd $project_path;
 
 	for elem in $subproject_dirs; do
@@ -32,14 +32,20 @@ compile(){
 }
 
 clean(){
-	for elem in ./*; do
-		if [[ -d $elem ]]; then
-			echo "\n$elem";
-			pushd $elem
-			make clean
-			popd
-		fi;
-	done;
+	if (( $# == 1 )); then
+		cd $1 2> /dev/null
+		[[ "$?" -eq "0" ]] && echo "Cleaning $1" && make clean && exit
+		echo "Project $1 not found..."
+	else
+		for elem in ./*; do
+			if [[ -d $elem ]]; then
+				echo "Cleaning $elem";
+				pushd $elem
+				make clean
+				popd
+			fi;
+		done;
+	fi;
 }
 
 # if [[ $1 != 10 ]]; then
@@ -52,12 +58,16 @@ case $1 in
 		compile
 		;;
 	clean)
-		clean
+		clean $2
 		;;
 	run)
 		run
 		;;
+	rebuild)
+		clean
+		compile	
+		;;
 	*)
-		echo "Usage: $0 [compile|run|clean]"
+		echo "Usage: $0 [compile|run|rebuild|clean]"
 esac
 
