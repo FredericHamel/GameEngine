@@ -27,6 +27,9 @@ public:
 	int getY() const;
 	int getWidth() const;
 	int getHeight() const;
+	
+	void setWidth(int);
+	void setHeight(int);
 
 	bool Contain(const ugen::Point2D&) const;
 	bool Contain(const ugen::Rectangle&) const ;
@@ -34,8 +37,6 @@ public:
 	bool operator==(const ugen::Rectangle&);
 	bool operator!=(const ugen::Rectangle&);
 private:
-	void setWidth(int);
-	void setHeight(int);
 
 	friend std::ostream& operator<<(std::ostream&, const ugen::Rectangle&);
 };
