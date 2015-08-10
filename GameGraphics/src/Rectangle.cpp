@@ -40,14 +40,12 @@ void Rectangle::Offset(int x,int y)
 
 void Rectangle::setWidth(int w)
 {
-	Debug::check_assertion(w < 0, StringConcat() << "Attempt to create a Rectangle with negative side...\n");
-	this->width_ = w;
+	this->width_ = w < 0 ? 0 : w;
 }
 
 void Rectangle::setHeight(int h)
 {
-	Debug::check_assertion(h < 0, StringConcat() << "Attempt to create a Rectangle with negative side...\n");
-	this->height_ = h;
+	this->height_ = h < 0 ? 0 : h;
 }
 
 bool Rectangle::Contain(const Point2D& p) const 
