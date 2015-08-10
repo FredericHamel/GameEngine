@@ -1,15 +1,18 @@
 #include "Color.h"
 #include "Sprite.h"
 #include "SpriteFont.h"
+#include "FileTools.h"
 
 using ugen::Sprite;
 using ugen::SpriteFont;
+using ugen::FileTools;
 
-SpriteFont::SpriteFont(std::string fontname, int32_t size)
+SpriteFont::SpriteFont(SDL_RWops* src, int32_t size)
 {
-	font = TTF_OpenFont(fontname.c_str(), size);
-	if(font == NULL)
-		Debug::error(StringConcat() << "-- Unable to load font " << fontname);
+	Debug::log(StringConcat() << "Create a SpriteFont"); 
+	font = TTF_OpenFontRW(src, 1, size);
+	if(font == nullptr)
+		Debug::error(StringConcat() << "-- Unable to load font " << TTF_GetError());
 }
 
 Sprite* SpriteFont::renderText(std::string text, Color fg) const
@@ -30,6 +33,7 @@ Sprite* SpriteFont::renderText(std::string text, Color fg) const
 
 SpriteFont::~SpriteFont()
 {
+	Debug::log(StringConcat() << "Destroy a SpriteFont");
 	TTF_CloseFont(font);
 	font = NULL;
 }
@@ -39,9 +43,17 @@ void SpriteFont::init()
 	TTF_Init();
 }
 
-SpriteFont* SpriteFont::loadFont(std::string fontname, int32_t size)
+SpriteFont* SpriteFont::loadFont(std::string fontname, int32_t fontsize)
 {
-	return new SpriteFont(fontname, size);
+	char *buffer;
+	size_t size;
+	FileTools::LoadFileBuffer(fontname, &size, &buffer);
+	SDL_RWops *rwop = SDL_RWFromMem(buffer, size);
+	if(rwop == nullptr){
+		Debug::error(StringConcat() << "Unable to load SDL_RWFromMem");
+		return nullptr;
+	}
+	return new SpriteFont(rwop, fontsize);
 }
 
 void SpriteFont::unloadFont(SpriteFont* font)

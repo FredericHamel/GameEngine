@@ -2,12 +2,13 @@
 #define SPRITE_FONT_H
 
 #include "Common.h"
+#include <SDL2/SDL_rwops.h>
 #include <SDL2/SDL_ttf.h>
 
 class ugen::SpriteFont
 {
 	TTF_Font* font;
-	SpriteFont(std::string, int32_t);
+	SpriteFont(SDL_RWops *, int32_t);
 public:
 	~SpriteFont();
 	Sprite* renderText(std::string, Color) const;
