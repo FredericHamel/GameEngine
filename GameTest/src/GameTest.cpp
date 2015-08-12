@@ -2,7 +2,9 @@
 #include "InputManager.h"
 #include "SpriteFont.h"
 #include "FileTools.h"
+#include "Debug.h"
 #include "FPS.h"
+
 #include <complex>
 #include <iostream>
 
@@ -28,6 +30,7 @@ GameTest::~GameTest()
 	
 }
 
+Rectangle dest(10,10, 0, 0);
 void GameTest::initialize()
 {
 	size_t size;
@@ -35,12 +38,27 @@ void GameTest::initialize()
 	
 	this->addComponent(new FPS(this, 1000.0f));
 
+	SpriteFont::init();
 	FileTools::Init();
 	FileTools::AddSearchPath(".");
+	FileTools::AddSearchPath("/usr/share/fonts/TTF");
 	FileTools::LoadFileBuffer("README.md", &size, &data);
+	
 	std::cout.write(data, size) << std::endl;
 
 	FileTools::UnloadFileBuffer(&data);
+	
+	textRenderer = SpriteFont::loadFont("DejaVuSans.ttf", 40);
+
+	if(textRenderer == nullptr)
+		Debug::error(StringConcat() << "Unable to create text renderer"); 
+	else
+	{
+		Color color(0, 128, 0);
+		text = textRenderer->renderText("Hello World!", color);
+		dest.setWidth(text->getWidth());
+		dest.setHeight(text->getHeight());
+	}
 	getGestionGraphics()->beginProjection();
 	getGestionGraphics()->pushCurrentMatrix();
 	Game::initialize();
@@ -65,7 +83,13 @@ void GameTest::loadContent()
 
 void GameTest::unloadContent()
 {
+	if(textRenderer != nullptr) {
+		SpriteFont::unloadFont(textRenderer);
+		delete text;
+	}
+
 	FileTools::Quit();
+	SpriteFont::quit();
 	Game::unloadContent();
 }
 
@@ -94,8 +118,8 @@ void GameTest::update(GameTime& gameTime)
 void GameTest::draw(GameTime& gameTime)
 {
 	getGestionGraphics()->clear(0.0f,0.0f,0.4f,0.0f);
-	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
-	
+	getGestionGraphics()->draw(text, 10, 10);
+	//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 	Game::draw(gameTime);
 }
 

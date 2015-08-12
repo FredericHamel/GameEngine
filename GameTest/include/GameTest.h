@@ -17,7 +17,8 @@ public:
 	virtual void draw(GameTime&);
 private:
 	std::vector<ColoredPoint2D*> listPoint;
-	SpriteFont* fontLoader;
+	SpriteFont* textRenderer;
+	Sprite* text;
 	GameEvent event;
 };
 
