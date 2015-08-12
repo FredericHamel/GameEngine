@@ -11,3 +11,9 @@ target_link_libraries(GameGraphics
 	${OPENGL_gl_LIBRARY}
 	${PHYSFS_LIBRARY})
 
+install(DIRECTORY "GameGraphics/include" DESTINATION ".")
+
+install(TARGETS GameGraphics
+	RUNTIME DESTINATION bin
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib/static)
