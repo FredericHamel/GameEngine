@@ -49,7 +49,7 @@ void FileTools::LoadFileBuffer(const std::string& nomFichier, size_t* size, char
 
 void FileTools::UnloadFileBuffer(char** buffer)
 {
-	if(*buffer == nullptr)
+	if(*buffer != nullptr)
 	{
 		delete[] *buffer;
 		*buffer = nullptr;
