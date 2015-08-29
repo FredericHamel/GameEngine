@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "GameSystem.h"
 #include "FileTools.h"
+#include "Debug.h"
 #include <typeinfo>
 
 using ugen::Game;
@@ -12,44 +13,58 @@ using ugen::GraphicManager;
  */
 Game::Game()
 {
+	Debug::log(StringConcat() << "Create Game");
 	isFixedTime = false;
 	isRunning = true;
-	gestionGraphics_ = new GraphicManager;
 	//mouseVisible = true;
 }
 
+
 /**
- * @brief Sample Destructor.
+ * @brief Sample Destructor unload content. 
  */
 Game::~Game()
 {
+	Debug::log(StringConcat() << "Destroy Game");
+	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
+	{
+		delete *it;
+	}
+	components.clear();
 }
 
 /**
  * @brief main game loop.
  */
-void Game::run()
+void 
+Game::run()
 {
 	GameTime *gameTime = GameTime::getInstance();
-	initialize();
-	loadContent();
+	try {
+		initialize();
+		loadContent();
 	
-	gameTime->init();
-	while(isRunning)
-	{
-		draw(*gameTime);
-		update(*gameTime);
-		gameTime->update();
-	}
-	unloadContent();
+		gameTime->init();
+	
+		while(isRunning)
+		{
+			draw(*gameTime);
+			update(*gameTime);
+			gameTime->update();
+		}
+	} catch(ugen::RuntimeException& e) {
+		Debug::error(StringConcat() << e.getExceptionName() << ": " << e.what());
+	} /** Should catch std::exception */
 }
 
-void Game::addComponent(GameComponent* component)
+void 
+Game::addComponent(GameComponent* component)
 {
 	components.push_back(component);
 }
 
-GraphicManager* Game::getGestionGraphics() const
+GraphicManager&
+Game::getGestionGraphics()
 {
 	return this->gestionGraphics_;
 }
@@ -57,10 +72,11 @@ GraphicManager* Game::getGestionGraphics() const
 /**
  * @brief Initialize all components.
  */
-void Game::initialize()
+void
+Game::initialize()
 {
 	GameSystem::init(); // initialise le video.
-	gestionGraphics_->init();
+	gestionGraphics_.init();
 	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 	{
 		(*it)->initialize();
@@ -70,36 +86,25 @@ void Game::initialize()
 /**
  * @brief load the resource.
  */
-void Game::loadContent()
+void
+Game::loadContent()
 {
 	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 	{
 		(*it)->loadContent();
 	}
-	gestionGraphics_->show();
-}
-
-/**
- * @brief Unload the resource loaded by LoadContent.
- */
-void Game::unloadContent()
-{
-	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
-	{
-		delete *it;
-	}
-	components.clear();
-	delete gestionGraphics_;
+	gestionGraphics_.show();
 }
 
 /**
  * @brief Update the logic of the game.
  */
-void Game::update(GameTime& gameTime)
+void
+Game::update(GameTime& gameTime)
 {
 	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 	{
-		if((*it)->isEnabled())
+		if((*it)->isEnabled());
 			(*it)->update(gameTime);
 	}
 }
@@ -107,7 +112,8 @@ void Game::update(GameTime& gameTime)
 /**
  * @brief Draw the DrawableGameComponent on the screen.
  */
-void Game::draw(GameTime& gameTime)
+void
+Game::draw(GameTime& gameTime)
 {
 	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 	{
@@ -115,14 +121,15 @@ void Game::draw(GameTime& gameTime)
 		if(tmp != nullptr && tmp->isVisible())
 				tmp->draw(gameTime);
 	}
-	getGestionGraphics()->endDraw();
+	gestionGraphics_.endDraw();
 }
 
 /**
   * @brief Get running state of the programme.
   * return wheter or not it is running.
   */
-bool Game::getRunningState() const
+bool
+Game::getRunningState() const
 {
 	return isRunning;
 }
@@ -131,7 +138,8 @@ bool Game::getRunningState() const
   * @brief Get if fixed is activated.
   * @return fixed time state.
   */
-bool Game::getFixedTimeState() const
+bool
+Game::getFixedTimeState() const
 {
 	return isFixedTime;
 }
@@ -139,7 +147,8 @@ bool Game::getFixedTimeState() const
 /**
  * @brief Exit the game loop.
  */
-void Game::exit()
+void
+Game::exit()
 {
 	isRunning = !isRunning;
 }

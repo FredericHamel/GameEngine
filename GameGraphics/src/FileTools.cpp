@@ -1,4 +1,5 @@
 #include "FileTools.h"
+#include "exceptions/FileNotFoundException.h"
 
 using ugen::FileTools;
 
@@ -25,20 +26,22 @@ void FileTools::AddSearchPath(const char* path, FileTools::TYPE_APPEND type)
  * @param nomFichier is the filename.
  * @return the file buffer.
  */
-void FileTools::LoadFileBuffer(const std::string& nomFichier, size_t* size, char** buffer)
+void FileTools::LoadFileBuffer(const std::string& nomFichier, size_t* size, char** buffer) throw(ugen::IOException)
 {
-	*buffer = NULL;
+	*buffer = nullptr;
 
-	PHYSFS_File* fichier = NULL;
-	Debug::check_assertion(!PHYSFS_exists(nomFichier.c_str()), StringConcat() << "File " << nomFichier << " doesn't exists\n"); 
+	PHYSFS_File* fichier = nullptr;
+	if(!PHYSFS_exists(nomFichier.c_str()))
+		throw FileNotFoundException(StringConcat() << nomFichier << " (No such file or directory)"); 
 
 	fichier = PHYSFS_openRead(nomFichier.c_str());
-	Debug::check_assertion(fichier == NULL, StringConcat() << "Failed to open file " << nomFichier << "\n");
+	
+	if(fichier == nullptr) throw IOException(StringConcat() << "Failed to open file " << nomFichier);
 
 	*size = PHYSFS_fileLength(fichier);
 	*buffer = new char[*size];
 
-	Debug::check_assertion(*buffer == NULL, StringConcat() << "Failed to allocate file buffer: " << size << "\n");
+	if(*buffer == nullptr) throw IOException(StringConcat() << "Failed to allocate file buffer: " << size);
 
 	PHYSFS_read(fichier, *buffer,sizeof(char), PHYSFS_uint32(*size));
 	PHYSFS_close(fichier);
@@ -46,8 +49,11 @@ void FileTools::LoadFileBuffer(const std::string& nomFichier, size_t* size, char
 
 void FileTools::UnloadFileBuffer(char** buffer)
 {
-	delete[] *buffer;
-	*buffer = NULL;
+	if(*buffer == nullptr)
+	{
+		delete[] *buffer;
+		*buffer = nullptr;
+	}
 }
 
 /**
