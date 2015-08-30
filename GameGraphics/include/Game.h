@@ -9,40 +9,40 @@
 
 class ugen::Game
 {
-    public:
-        Game();
-        virtual ~Game();
-				virtual void run();
-				virtual void initialize();
-        virtual void loadContent();
-        virtual void unloadContent();
-        virtual void update(ugen::GameTime&);
-        virtual void draw(ugen::GameTime&);
-        
-        void exit();
+	public:
+		Game();
+		virtual ~Game();
+		virtual void run();
+		virtual void initialize();
+		virtual void loadContent();
+		virtual void update(ugen::GameTime&);
+		virtual void draw(ugen::GameTime&);
 
-        bool getRunningState() const;
-        bool getFixedTimeState() const;
+		void exit();
+
+		bool getRunningState() const;
+		bool getFixedTimeState() const;
 	protected:
 		void addComponent(ugen::GameComponent*);
-		ugen::GraphicManager* getGestionGraphics() const;
+		
+		ugen::GraphicManager& getGestionGraphics();
 
 
 		// To implements
 		/*
-		void setMouseVisibleState(bool);
-		void setFixedTimeState(bool);
+			 void setMouseVisibleState(bool);
+			 void setFixedTimeState(bool);
 
-		void toggleMouseVisible();
-		void toggleFixedTimeState();
-		*/
+			 void toggleMouseVisible();
+			 void toggleFixedTimeState();
+	 	*/
 	private:
 		bool mouseVisible_;
 		bool isRunning;
 		bool isFixedTime;
 
 		ugen::GameComponentList components;
-		ugen::GraphicManager* gestionGraphics_;
+		ugen::GraphicManager gestionGraphics_;
 };
 
 #endif // GAME_H

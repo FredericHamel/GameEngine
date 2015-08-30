@@ -6,9 +6,9 @@ GameWindow::GameWindow(std::string title, int32_t x, int32_t y, int32_t w, int32
 	:flags(0)
 {
 	Debug::log(StringConcat() << "Create GameWindow: " << title);
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	internal_window = SDL_CreateWindow(title.c_str(), x, y, w, h, flags);
 	Debug::check_assertion(internal_window == 0, StringConcat() << SDL_GetError() << "\n");
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	glContext = SDL_GL_CreateContext(getInternalWindow());
 }
 
@@ -17,6 +17,7 @@ GameWindow::~GameWindow()
 	Debug::log(StringConcat() << "Destroy GameWindow: " << getWindowTitle());
 	SDL_GL_DeleteContext(glContext);
 	SDL_DestroyWindow(internal_window);
+	internal_window = nullptr;
 }
 
 SDL_Window* GameWindow::getInternalWindow() const

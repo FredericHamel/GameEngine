@@ -1,5 +1,5 @@
 
-file(GLOB src "GameGraphics/src/*.cpp" "GameGraphics/src/exceptions/*.cpp")
+file(GLOB src "GameGraphics/src/*.cpp" "GameGraphics/src/subsystem/*.cpp" "GameGraphics/src/exceptions/*.cpp")
 
 include_directories("GameGraphics/include")
 

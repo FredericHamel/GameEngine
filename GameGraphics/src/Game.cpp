@@ -12,6 +12,7 @@ using ugen::GraphicManager;
  * @brief Construtor of the game main class.
  */
 Game::Game()
+	:gestionGraphics_()
 {
 	Debug::log(StringConcat() << "Create Game");
 	isFixedTime = false;
@@ -75,7 +76,7 @@ Game::getGestionGraphics()
 void
 Game::initialize()
 {
-	GameSystem::init(); // initialise le video.
+//	GameSystem::init(); // initialise le video.
 	gestionGraphics_.init();
 	for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 	{
@@ -121,7 +122,7 @@ Game::draw(GameTime& gameTime)
 		if(tmp != nullptr && tmp->isVisible())
 				tmp->draw(gameTime);
 	}
-	gestionGraphics_.endDraw();
+	gestionGraphics_.updateDraw();
 }
 
 /**

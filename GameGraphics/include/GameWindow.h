@@ -29,12 +29,9 @@ public:
 	void updateDraw();
 private:
 	SDL_Window* getInternalWindow() const;
-#ifndef GRAPHIC_MANAGER_H
 	int32_t flags;
 	SDL_Window* internal_window;
 	SDL_GLContext glContext;
-#endif
-friend class ugen::GraphicManager;
 };
 
 #endif
