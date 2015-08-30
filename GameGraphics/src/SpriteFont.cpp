@@ -33,9 +33,12 @@ Sprite* SpriteFont::renderText(std::string text, Color fg) const
 
 SpriteFont::~SpriteFont()
 {
+	if(font != nullptr)
+	{
+		TTF_CloseFont(font);
+		font = NULL;
+	}
 	Debug::log(StringConcat() << "Destroy a SpriteFont");
-	TTF_CloseFont(font);
-	font = NULL;
 }
 
 void SpriteFont::init()
