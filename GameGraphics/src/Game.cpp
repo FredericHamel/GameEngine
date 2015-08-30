@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "GameSystem.h"
 #include "FileTools.h"
 #include "Debug.h"
 #include <typeinfo>
