@@ -12,7 +12,6 @@ public:
 	virtual ~GameTest();
 	virtual void initialize();
 	virtual void loadContent();
-	virtual void unloadContent();
 	virtual void update(GameTime&);
 	virtual void draw(GameTime&);
 private:
