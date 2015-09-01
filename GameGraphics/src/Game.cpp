@@ -54,7 +54,9 @@ Game::run()
 		}
 	} catch(ugen::RuntimeException& e) {
 		Debug::error(StringConcat() << e.getExceptionName() << ": " << e.what());
-	} /** Should catch std::exception */
+	} catch(std::exception& e) {
+		Debug::error(StringConcat() << "Exception: " << e.what());
+	}	/** It catch std::exception */
 }
 
 void 
