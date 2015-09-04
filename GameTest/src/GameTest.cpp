@@ -17,7 +17,7 @@ static float vertices[] = {
 	0.0f, 0.5f, 0.0f
 };
 
-unsigned int g_index[] = { 1, 2, 3 };
+static unsigned int g_index[] = { 1, 2, 3 };
 
 static GLuint vao, vbo, ibo;
 
@@ -27,28 +27,37 @@ GameTest::GameTest()
 
 GameTest::~GameTest()
 {
-	
+	glDeleteVertexArrays(1, &vao);
+	glDeleteBuffers(1, &vbo);
+	glDeleteBuffers(1, &ibo);
+
+	if(textRenderer != nullptr) {
+//		if(text != nullptr)	delete text;
+//		SpriteFont::unloadFont(textRenderer);
+	}
+
+//	SpriteFont::quit();
+	FileTools::Quit();
+	Debug::log(StringConcat() << "GameTest::~GameTest();");
 }
 
 Rectangle dest(10,10, 0, 0);
 void GameTest::initialize()
 {
 	size_t size;
-	char *data;
+	char *data = nullptr;
 	
 	this->addComponent(new FPS(this, 1000.0f));
 
-	SpriteFont::init();
 	FileTools::Init();
+//	SpriteFont::init();
 	FileTools::AddSearchPath(".");
 	FileTools::AddSearchPath("/usr/share/fonts/TTF");
 	FileTools::LoadFileBuffer("README.md", &size, &data);
-	
 	std::cout.write(data, size) << std::endl;
-
 	FileTools::UnloadFileBuffer(&data);
-	
-	textRenderer = SpriteFont::loadFont("DejaVuSans.ttf", 40);
+
+	/*textRenderer = SpriteFont::loadFont("DejaVuSans.ttf", 40);
 
 	if(textRenderer == nullptr)
 		Debug::error(StringConcat() << "Unable to create text renderer"); 
@@ -56,11 +65,13 @@ void GameTest::initialize()
 	{
 		Color color(0, 128, 0);
 		text = textRenderer->renderText("Hello World!", color);
-		dest.setWidth(text->getWidth());
-		dest.setHeight(text->getHeight());
-	}
-	getGestionGraphics()->beginProjection();
-	getGestionGraphics()->pushCurrentMatrix();
+		if(text != nullptr) {
+			dest.setWidth(text->getWidth());
+			dest.setHeight(text->getHeight());
+		}
+	}*/
+	//getGestionGraphics().beginProjection();
+	//getGestionGraphics().pushCurrentMatrix();
 	Game::initialize();
 }
 
@@ -81,18 +92,6 @@ void GameTest::loadContent()
 	Game::loadContent();
 }
 
-void GameTest::unloadContent()
-{
-	if(textRenderer != nullptr) {
-		SpriteFont::unloadFont(textRenderer);
-		delete text;
-	}
-
-	FileTools::Quit();
-	SpriteFont::quit();
-	Game::unloadContent();
-}
-
 void GameTest::update(GameTime& gameTime)
 {
 	while(InputManager::PollEvent(&event))
@@ -103,7 +102,7 @@ void GameTest::update(GameTime& gameTime)
 				switch (event.key.keysym.sym)
 				{
 					case SDLK_q:
-						getGestionGraphics()->toggleSwapInterval();
+						getGestionGraphics().toggleSwapInterval();
 						break;
 					case SDLK_ESCAPE:
 						Game::exit();
@@ -117,8 +116,8 @@ void GameTest::update(GameTime& gameTime)
 
 void GameTest::draw(GameTime& gameTime)
 {
-	getGestionGraphics()->clear(0.0f,0.0f,0.4f,0.0f);
-	getGestionGraphics()->draw(text, 10, 10);
+	getGestionGraphics().clear(0.0f,0.0f,0.4f,0.0f);
+	//getGestionGraphics().draw(text, 10, 10);
 	//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 	Game::draw(gameTime);
 }

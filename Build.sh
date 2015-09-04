@@ -37,7 +37,7 @@ clean(){
 		[[ "$?" -eq "0" ]] && echo "Cleaning $1" && make clean && exit
 		echo "Project $1 not found..."
 	else
-		for elem in ./*; do
+		for elem in $subproject_dirs; do
 			if [[ -d $elem ]]; then
 				echo "Cleaning $elem";
 				pushd $elem

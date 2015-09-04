@@ -8,6 +8,8 @@
  #include <physfs.h>
 #endif
 
+#include "exceptions/IOException.h"
+
 class ugen::FileTools
 {
 public:
@@ -21,7 +23,7 @@ private:
 public:
 	static void Init();
 	static void AddSearchPath(const char*, FileTools::TYPE_APPEND=FileTools::SUFF_APPEND);
-	static void LoadFileBuffer(const std::string&, size_t*, char**);
+	static void LoadFileBuffer(const std::string&, size_t*, char**) throw(ugen::IOException);
 	static void UnloadFileBuffer(char **);
 	static void Quit();
 };

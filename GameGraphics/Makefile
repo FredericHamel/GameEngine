@@ -2,7 +2,7 @@ EMPTY:=
 SRC_DIR:=src
 SRC_CC:=${SRC_DIR}/%.cc
 SRC_CPP:=${SRC_DIR}/%.cpp
-SRC:=$(wildcard ${SRC_DIR}/*.cc) $(wildcard ${SRC_DIR}/*.cpp)
+SRC:=$(wildcard ${SRC_DIR}/*.cc) $(wildcard ${SRC_DIR}/*.cpp) $(wildcard ${SRC_DIR}/exceptions/*.cpp) $(wildcard ${SRC_DIR}/subsystem/*.cpp)
 
 EXEC:=GameGraphics.so
 
@@ -21,7 +21,7 @@ all: $(BIN_DIR) ${OBJ_DIR} ${BIN}
 
 # Directory tree building: Object files
 $(OBJ_DIR):
-	@mkdir $@
+	@mkdir -p $@/{exceptions,subsystem}
 
 # Directory tree building: Library
 $(BIN_DIR):

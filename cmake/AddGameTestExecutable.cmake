@@ -3,9 +3,10 @@ file(GLOB
 	"GameTest/src/*.cc"
 	"GameTest/src/*.cpp")
 
-include_directories("GameTest/include")
-
 add_executable(GameTest ${src})
+
+get_property(dirs DIRECTORY "${PROJECT_SOURCE_DIR}" PROPERTY INCLUDE_DIRECTORIES)
+set_property(TARGET GameTest PROPERTY INCLUDE_DIRECTORIES "${dirs}" "${PROJECT_SOURCE_DIR}/GameTest/include")
 
 target_link_libraries(GameTest
 	GameGraphics)

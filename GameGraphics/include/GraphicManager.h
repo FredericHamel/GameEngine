@@ -5,9 +5,10 @@
 #include "Sprite.h"
 #include "ColoredPoint2D.h"
 #include "GameWindow.h"
+#include "subsystem/Video.h"
 
 // Gestion 2d
-class ugen::GraphicManager
+class ugen::GraphicManager : public ugen::Video, public ugen::GameWindow
 {
 public:
 	GraphicManager();
@@ -15,43 +16,36 @@ public:
 	~GraphicManager();
 	
 	void init();
-	void show();
-	void toggleFullscreen();
-	void toggleSwapInterval();
-	void getWindowSize(int32_t* w, int32_t* h) const;
 
 	// Set Matrix mode
-	void beginProjection();
-	void beginModelView();
-	void beginTexture();
+	void beginProjection() const;
+	void beginModelView() const;
+	void beginTexture() const;
 
 	// OpenGL setting
-	void loadIdentity();
-	void pushCurrentMatrix();
-	void popCurrentMatrix();
-	void setViewport(int32_t, int32_t, uint32_t, uint32_t);
-	void setOrthoSystem(double, double, double, double, double, double);
-	void setFrustum(double, double, double, double, double, double);
+	void loadIdentity() const;
+	void pushCurrentMatrix() const;
+	void popCurrentMatrix() const;
+	void setViewport(int32_t, int32_t, uint32_t, uint32_t) const;
+	void setOrthoSystem(double, double, double, double, double, double) const;
+	void setFrustum(double, double, double, double, double, double) const;
 
 	// OpenGL transformation 3D
-	void translatef(float, float, float);
-	void translated(double, double, double);
-	void rotatef(float, float, float, float);
-	void rotated(double, double, double, double);
-	void scalef(float, float, float);
-	void scaled(double, double, double);
+	void translatef(float, float, float) const;
+	void translated(double, double, double) const;
+	void rotatef(float, float, float, float) const;
+	void rotated(double, double, double, double) const;
+	void scalef(float, float, float) const;
+	void scaled(double, double, double) const;
 
 	// Color RGB
-	void clear(float, float, float, float);
-	void draw(const ugen::Sprite* const, int32_t, int32_t);
+	void clear(float, float, float, float) const;
+	void draw(const ugen::Sprite* const, int32_t, int32_t) const;
 	void draw(const ugen::Sprite* const, const ugen::Rectangle* const, const ugen::Rectangle* const) const;
-	void drawString(const ugen::SpriteFont* const, std::string, const ugen::Point2D* const, Color);
+	void drawString(const ugen::SpriteFont* const, std::string, const ugen::Point2D* const, Color) const;
 	void drawPoint2D(std::vector<ColoredPoint2D*>) const;
 	void drawRect(const ugen::Rectangle* const, const ugen::Color* const) const;
 	void endDraw();
-	const ugen::GameWindow& getWindow() const;
-private:
-	ugen::GameWindow window_;
 };
 
 #endif

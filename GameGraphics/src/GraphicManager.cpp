@@ -6,6 +6,7 @@ using ugen::Point2D;
 using ugen::Rectangle;
 using ugen::GameWindow;
 using ugen::GraphicManager;
+using ugen::Video;
 
 const std::string DEFAULT_TITLE = "Game Engine";
 const int32_t DEFAULT_WIDTH = 640;
@@ -15,7 +16,7 @@ const int32_t DEFAULT_HEIGHT = 480;
  * @brief create the Graphic manager with a inner window.
  */
 GraphicManager::GraphicManager()
-	:window_(DEFAULT_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DEFAULT_WIDTH, DEFAULT_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN)
+	:Video(), GameWindow(DEFAULT_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DEFAULT_WIDTH, DEFAULT_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN)
 {
 	Debug::log(StringConcat() << "Create GraphicManager: window.title = " << DEFAULT_TITLE);
 }
@@ -24,7 +25,7 @@ GraphicManager::GraphicManager()
  * @brief
  */
 GraphicManager::GraphicManager(std::string title, int32_t x, int32_t y, int32_t w, int32_t h)
-	:window_(title.c_str(), x, y, w, h, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN)
+	:Video(), GameWindow(title.c_str(), x, y, w, h, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN)
 {
 	Debug::log(StringConcat() << "Create GraphicManager: window.title = " << title);
 }
@@ -34,13 +35,14 @@ GraphicManager::GraphicManager(std::string title, int32_t x, int32_t y, int32_t 
  */
 GraphicManager::~GraphicManager()
 {
-	Debug::log(StringConcat() << "Destroy GraphicManager: window.title = " << getWindow().getWindowTitle());
+	Debug::log(StringConcat() << "Destroy GraphicManager: window.title = " << getWindowTitle());
 }
 
-void GraphicManager::init()
+void
+GraphicManager::init()
 {
 	int32_t w, h;
-	getWindow().getWindowSize(w, h);
+	getWindowSize(w, h);
 	glShadeModel(GL_SMOOTH);
 	
 	glDisable(GL_DEPTH_TEST);
@@ -60,118 +62,109 @@ void GraphicManager::init()
 	glClearColor(0.0,0.0,0.0,1.0);
 }
 
-void GraphicManager::getWindowSize(int32_t* w, int32_t* h) const
-{
-	getWindow().getWindowSize(*w, *h);
-}
-
-void GraphicManager::show() {
-	window_.show();
-}
-
-void GraphicManager::toggleSwapInterval() {
-	window_.toggleSwapInterval();
-}
-
-void GraphicManager::beginProjection()
+void
+GraphicManager::beginProjection() const
 {
 	glMatrixMode(GL_PROJECTION);
 }
 
-void GraphicManager::beginModelView()
+void
+GraphicManager::beginModelView() const
 {
 	glMatrixMode(GL_MODELVIEW);
 }
 
-void GraphicManager::beginTexture()
+void
+GraphicManager::beginTexture() const
 {
 	glMatrixMode(GL_TEXTURE);
 }
 
-void GraphicManager::loadIdentity()
+void
+GraphicManager::loadIdentity() const
 {
 	glLoadIdentity();
 }
 
-void GraphicManager::pushCurrentMatrix()
+void
+GraphicManager::pushCurrentMatrix() const
 {
 	glPushMatrix();
 }
 
-void GraphicManager::popCurrentMatrix()
+void
+GraphicManager::popCurrentMatrix() const
 {
 	glPopMatrix();
 }
 
 
-void GraphicManager::setViewport(int32_t x, int32_t y, uint32_t w, uint32_t h)
+void
+GraphicManager::setViewport(int32_t x, int32_t y, uint32_t w, uint32_t h) const
 {
 	glViewport(0, 0, w, h);
 }
 
-void GraphicManager::setOrthoSystem(double left, double right, double bottom, double top, double near, double far)
+void
+GraphicManager::setOrthoSystem(double left, double right, double bottom, double top, double near, double far) const
 {
 	glOrtho(left, right, bottom, top, near, far);
 }
 
-void GraphicManager::setFrustum(double left, double right, double bottom, double top, double near, double far)
+void
+GraphicManager::setFrustum(double left, double right, double bottom, double top, double near, double far) const
 {
 	glFrustum(left, right, bottom, top, near, far);
 }
 
-void GraphicManager::translatef(float x, float y, float z)
+void
+GraphicManager::translatef(float x, float y, float z) const
 {
 	glTranslatef(x, y, z);
 }
 
-void GraphicManager::translated(double x, double y, double z)
+void
+GraphicManager::translated(double x, double y, double z) const
 {
 	glTranslated(x, y, z);
 }
 
-void GraphicManager::rotatef(float angle, float x, float y, float z)
+void
+GraphicManager::rotatef(float angle, float x, float y, float z) const
 {
 	glRotatef(angle, x, y, z);
 }
 
-void GraphicManager::rotated(double angle, double x, double y, double z)
+void
+GraphicManager::rotated(double angle, double x, double y, double z) const
 {
 	glRotated(angle, x, y, z);
 }
 
-void GraphicManager::scalef(float x, float y, float z)
+void
+GraphicManager::scalef(float x, float y, float z) const
 {
 	glScalef(x, y, z);
 }
 
-void GraphicManager::scaled(double x, double y, double z)
+void
+GraphicManager::scaled(double x, double y, double z) const
 {
 	glScaled(x, y, z);
 }
 
 /**
- * @brief
- */
-const GameWindow& GraphicManager::getWindow() const
-{
-	return window_;
-}
-
-void GraphicManager::toggleFullscreen()
-{
-	window_.toggleFullscreen();
-}
-
-/**
  * @brief 
  */
-void GraphicManager::clear(float r, float g, float b, float a)
+void
+GraphicManager::clear(float r, float g, float b, float a) const
 {
 	glClearColor(r, g, b, a);
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void GraphicManager::draw(const Sprite* const sprite, int32_t x, int32_t y)
+void
+GraphicManager::draw(const Sprite* const sprite, int32_t x, int32_t y) const
 {
 	glBindTexture(GL_TEXTURE_2D, sprite->getBuffer());
 	glBegin(GL_QUADS);
@@ -182,7 +175,8 @@ void GraphicManager::draw(const Sprite* const sprite, int32_t x, int32_t y)
 	glEnd();	
 }
 
-void GraphicManager::draw(const Sprite* const sprite, const Rectangle* const src, const Rectangle* const dst) const
+void
+GraphicManager::draw(const Sprite* const sprite, const Rectangle* const src, const Rectangle* const dst) const
 {
 	if(src == 0)
 	{
@@ -222,7 +216,8 @@ void GraphicManager::draw(const Sprite* const sprite, const Rectangle* const src
 	}
 }
 
-void GraphicManager::drawString(const SpriteFont *const font, std::string text, const Point2D* const p, Color fg)
+void
+GraphicManager::drawString(const SpriteFont *const font, std::string text, const Point2D* const p, Color fg) const
 {
 	Sprite* sprite = font->renderText(text, fg);
 	if(sprite != NULL)
@@ -233,7 +228,8 @@ void GraphicManager::drawString(const SpriteFont *const font, std::string text, 
 	}
 }
 
-void GraphicManager::drawPoint2D(std::vector<ColoredPoint2D*> list) const
+void
+GraphicManager::drawPoint2D(std::vector<ColoredPoint2D*> list) const
 {
 	glBegin(GL_POINTS);
 		for(auto it = list.begin(); it != list.end(); ++it)
@@ -243,7 +239,8 @@ void GraphicManager::drawPoint2D(std::vector<ColoredPoint2D*> list) const
 	glEnd();
 }
 
-void GraphicManager::drawRect(const Rectangle* const rect, const Color* const color) const
+void
+GraphicManager::drawRect(const Rectangle* const rect, const Color* const color) const
 {
 	glBegin(GL_QUADS);
 		glColor3f(color->getRed() / 255.0f, color->getGreen() / 255.0f, color->getBlue() / 255.0f);
@@ -254,7 +251,3 @@ void GraphicManager::drawRect(const Rectangle* const rect, const Color* const co
 	glEnd();
 }
 
-void GraphicManager::endDraw()
-{
-	window_.updateDraw();
-}
