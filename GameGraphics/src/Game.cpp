@@ -19,6 +19,21 @@ Game::Game()
 	//mouseVisible = true;
 }
 
+Game::Game(const char* title, int32_t w, int32_t h)
+	:gestionGraphics_(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h)
+{
+	Debug::log(StringConcat() << "Create Game");
+	isFixedTime = false;
+	isRunning = true;
+}
+
+Game::Game(const char* title, int32_t x, int32_t y, int32_t w, int32_t h)
+	:gestionGraphics_(title, x, y, w, h)
+{
+	Debug::log(StringConcat() << "Create Game");
+	isFixedTime = false;
+	isRunning = true;
+}
 
 /**
  * @brief Sample Destructor unload content. 

@@ -11,6 +11,8 @@ class ugen::Game
 {
 	public:
 		Game();
+		Game(const char*, int32_t, int32_t);
+		Game(const char*, int32_t, int32_t, int32_t, int32_t);
 		virtual ~Game();
 		virtual void run();
 		virtual void initialize();
