@@ -13,8 +13,8 @@ int main(int argc, char **argv)
 		std::cin.ignore(std::cin.rdbuf()->in_avail());
 		gameTime->update();
 
-		std::cout << "Elapsed time: " << gameTime->getElapsedTimeSecond() << std::endl;
-		std::cout << "Elapsed time: " << gameTime->getElapsedTimeMillisecond() << std::endl;
+		std::cout << "Elapsed time (s): " << gameTime->getElapsedTimeSecond() << std::endl;
+		std::cout << "Elapsed time (ms): " << gameTime->getElapsedTimeMillisecond() << std::endl;
 	}
 	return 0;
 }
