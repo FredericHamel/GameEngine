@@ -2,6 +2,7 @@
 #include <InputManager.h>
 
 AppGame::AppGame()
+	:ugen::Game("AppGame", 640, 480)
 {
 }
 
