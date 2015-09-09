@@ -3,35 +3,38 @@
 
 #include "Common.h"
 
-class ugen::GameWindow
+namespace ugen
 {
-public:
-	GameWindow(std::string, int32_t, int32_t, int32_t, int32_t, uint32_t);
-	~GameWindow();
-	
-	void setWindowSize(int32_t, int32_t);
-	void getWindowSize(int32_t&, int32_t&) const;
+	class GameWindow
+	{
+		public:
+			GameWindow(const std::string&, int32_t, int32_t, int32_t, int32_t, uint32_t);
+			~GameWindow();
 
-	void setWindowTitle(std::string);
-	const char* getWindowTitle() const;
-	
-	void show();
-	void hide();
-	
-	void setSwapInterval(int);
+			void setWindowSize(int32_t, int32_t);
+			void getWindowSize(int32_t&, int32_t&) const;
 
-	void toggleSwapInterval();	
-	void toggleFullscreen();
-	
-	void minimize();
-	void maximize();
+			void setWindowTitle(const std::string&);
+			const char* getWindowTitle() const;
 
-	void updateDraw();
-private:
-	SDL_Window* getInternalWindow() const;
-	int32_t flags;
-	SDL_Window* internal_window;
-	SDL_GLContext glContext;
-};
+			void show();
+			void hide();
 
+			void setSwapInterval(int);
+
+			void toggleSwapInterval();
+			void toggleFullscreen();
+
+			void minimize();
+			void maximize();
+
+			void updateDraw();
+		private:
+			int32_t fullscreenState;
+			SDL_Window* getInternalWindow() const;
+			SDL_Window* internal_window;
+			SDL_GLContext glContext;
+	};
+
+}
 #endif
