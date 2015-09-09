@@ -8,9 +8,9 @@ using ugen::GameWindow;
 using ugen::GraphicManager;
 using ugen::Video;
 
-const std::string DEFAULT_TITLE = "Game Engine";
-const int32_t DEFAULT_WIDTH = 640;
-const int32_t DEFAULT_HEIGHT = 480;
+static const std::string DEFAULT_TITLE = "Game Engine";
+static const int32_t DEFAULT_WIDTH = 640;
+static const int32_t DEFAULT_HEIGHT = 480;
 
 /**
  * @brief create the Graphic manager with a inner window.
