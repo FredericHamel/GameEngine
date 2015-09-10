@@ -3,7 +3,13 @@
 int main(int argc, char* argv[])
 {
 	Debug::reset();
-	GameTest game;
-	game.run();
+	try
+	{
+		GameTest game;
+		game.run();
+	}catch(std::exception& e)
+	{
+		Debug::error(StringConcat() << e.what());
+	}
 	return 0;
 }

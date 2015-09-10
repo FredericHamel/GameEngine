@@ -6,13 +6,13 @@
 class AppGame : public ugen::Game
 {
 	public:
-		AppGame();
+		AppGame() throw (ugen::VideoException);
 		~AppGame();
 
-		void initialize();
-		void loadContent();
-		void update(ugen::GameTime&);
-		void draw(ugen::GameTime&);
+		void initialize() throw (std::exception);
+		void loadContent() throw(std::exception);
+		void update(ugen::GameTime&) throw (std::exception);
+		void draw(ugen::GameTime&) throw (std::exception);
 };
 
 #endif // APP_GAME_H

@@ -21,7 +21,7 @@ static unsigned int g_index[] = { 1, 2, 3 };
 
 static GLuint vao, vbo, ibo;
 
-GameTest::GameTest()
+GameTest::GameTest() throw(ugen::VideoException)
 {
 }
 
@@ -42,7 +42,7 @@ GameTest::~GameTest()
 }
 
 Rectangle dest(10,10, 0, 0);
-void GameTest::initialize()
+void GameTest::initialize() throw (std::exception)
 {
 	size_t size;
 	char *data = nullptr;
@@ -75,7 +75,7 @@ void GameTest::initialize()
 	Game::initialize();
 }
 
-void GameTest::loadContent()
+void GameTest::loadContent() throw (std::exception)
 {
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
@@ -92,7 +92,7 @@ void GameTest::loadContent()
 	Game::loadContent();
 }
 
-void GameTest::update(GameTime& gameTime)
+void GameTest::update(GameTime& gameTime) throw (std::exception)
 {
 	while(InputManager::PollEvent(&event))
 	{
@@ -114,7 +114,7 @@ void GameTest::update(GameTime& gameTime)
 	Game::update(gameTime);
 }
 
-void GameTest::draw(GameTime& gameTime)
+void GameTest::draw(GameTime& gameTime) throw (std::exception)
 {
 	getGestionGraphics().clear(0.0f,0.0f,0.4f,0.0f);
 	//getGestionGraphics().draw(text, 10, 10);
