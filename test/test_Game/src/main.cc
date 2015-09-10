@@ -1,11 +1,16 @@
 
 #include "AppGame.h"
-
+#include <iostream>
 using namespace ugen;
 
 int main()
 {
-	AppGame game;
-	game.run();
+	try {
+		AppGame game;
+		game.run();
+	} catch(ugen::RuntimeException& e)
+	{
+		std::cout << e << std::endl;		
+	}
 	return 0;
 }

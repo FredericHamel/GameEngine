@@ -22,3 +22,9 @@ ugen::RuntimeException::getExceptionName() const noexcept
 	return exceptName_.c_str();
 }
 
+std::ostream&
+operator<<(std::ostream& out, ugen::RuntimeException& e)
+{
+	out << e.getExceptionName() << ": " << e.what();
+	return out;
+}

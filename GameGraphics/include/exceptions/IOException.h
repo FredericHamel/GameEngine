@@ -7,7 +7,6 @@
 
 namespace ugen
 {
-	using namespace ugen;
 	class IOException: public RuntimeException
 	{
 		public:

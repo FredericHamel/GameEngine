@@ -2,13 +2,14 @@
 #define GAME_WINDOW_H
 
 #include "Common.h"
+#include "exceptions/VideoException.h"
 
 namespace ugen
 {
 	class GameWindow
 	{
 		public:
-			GameWindow(const std::string&, int32_t, int32_t, int32_t, int32_t, uint32_t);
+			GameWindow(const std::string&, int32_t, int32_t, int32_t, int32_t, uint32_t) throw(VideoException);
 			~GameWindow();
 
 			void setWindowSize(int32_t, int32_t);
