@@ -15,7 +15,7 @@ OBJ:=$(subst ${SRC_DIR}/,${OBJ_DIR}/,$(subst .cpp,.o,$(subst .cc,.cpp,${SRC})))
 INCLUDE_DIR:=include
 INCLUDE:=$(INCLUDE_DIR)/%.h
 
-CFLAGS:=-O --std=c++0x -I../GameGraphics/include -I$(INCLUDE_DIR)
+CFLAGS:=-O --std=c++0x -I../UGEN/include -I$(INCLUDE_DIR)
 
 all: $(BIN_DIR) $(OBJ_DIR) $(BIN)
 
@@ -29,7 +29,7 @@ $(OBJ_DIR):
 # Project building
 $(BIN): $(OBJ)
 	@echo Building $(EXEC).
-	@g++ -lSDL2_ttf -lSDL2_image -lGL -lphysfs -lSDL2  -L../GameGraphics/lib -lGameGraphics -o $@ $^
+	@g++ -lSDL2_ttf -lSDL2_image -lGL -lphysfs -lSDL2  -L../UGEN/lib -lUGEN -o $@ $^
 
 $(OBJ_DIR)/%.o: $(SRC_CC)
 	@echo $< -\> $(subst $(OBJ_DIR)/,$(EMPTY),$@)

@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 current_dir=`pwd`
 project_path=`pwd`
-subproject_dirs=(GameGraphics GameTest);
+subproject_dirs=(UGEN GameTest);
 
 run(){
 	if [[ ! ((-a ./GameTest/bin/GameTest)) ]]; then
@@ -9,7 +9,7 @@ run(){
 		compile
 	fi
 	echo Running...
-	LD_LIBRARY_PATH=$current_dir/GameGraphics/lib ./GameTest/bin/GameTest
+	LD_LIBRARY_PATH=$current_dir/UGEN/lib ./GameTest/bin/GameTest
 
 }
 
