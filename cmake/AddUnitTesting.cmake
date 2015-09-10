@@ -24,7 +24,7 @@ foreach(test ${test_projects})
 		set_property(TARGET ${p_name} PROPERTY INCLUDE_DIRECTORIES "${dirs};${PROJECT_SOURCE_DIR}/${test}/include")
 	
 		# Link library
-		target_link_libraries(${p_name} GameGraphics)
+		target_link_libraries(${p_name} UGEN)
 
 		string(LENGTH ${p_name} strlen)
 		math(EXPR memleak 4+${strlen}*4)
