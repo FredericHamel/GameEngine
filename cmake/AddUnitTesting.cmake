@@ -25,5 +25,11 @@ foreach(test ${test_projects})
 	
 		# Link library
 		target_link_libraries(${p_name} GameGraphics)
+
+		string(LENGTH ${p_name} strlen)
+		math(EXPR memleak 4+${strlen}*4)
+		add_custom_target(run-${p_name}
+			COMMAND valgrind ${PROJECT_BINARY_DIR}/${p_name}
+			COMMAND echo "Possible leak: ${memleak}" )
 	endif()
 endforeach()
