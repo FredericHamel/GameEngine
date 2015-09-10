@@ -7,44 +7,47 @@
 #include "GameTime.h"
 #include "GraphicManager.h"
 
-class ugen::Game
+namespace ugen
 {
-	public:
-		Game();
-		Game(const char*, int32_t, int32_t);
-		Game(const char*, int32_t, int32_t, int32_t, int32_t);
-		virtual ~Game();
-		virtual void run();
-		virtual void initialize();
-		virtual void loadContent();
-		virtual void update(ugen::GameTime&);
-		virtual void draw(ugen::GameTime&);
+	class Game
+	{
+		public:
+			Game() throw(VideoException);
+			Game(const char*, int32_t, int32_t) throw(VideoException);
+			Game(const char*, int32_t, int32_t, int32_t, int32_t) throw(VideoException);
+			virtual ~Game();
+			virtual void run() throw (std::exception);
+			virtual void initialize() throw (std::exception);
+			virtual void loadContent() throw (std::exception);
+			virtual void update(ugen::GameTime&) throw (std::exception);
+			virtual void draw(ugen::GameTime&) throw (std::exception);
 
-		void exit();
+			void exit();
 
-		bool getRunningState() const;
-		bool getFixedTimeState() const;
-	protected:
-		void addComponent(ugen::GameComponent*);
-		
-		ugen::GraphicManager& getGestionGraphics();
+			bool getRunningState() const;
+			bool getFixedTimeState() const;
+		protected:
+			void addComponent(ugen::GameComponent*);
+
+			ugen::GraphicManager& getGestionGraphics();
 
 
-		// To implements
-		/*
-			 void setMouseVisibleState(bool);
-			 void setFixedTimeState(bool);
+			// To implements
+			/*
+				 void setMouseVisibleState(bool);
+				 void setFixedTimeState(bool);
 
-			 void toggleMouseVisible();
-			 void toggleFixedTimeState();
-	 	*/
-	private:
-		bool mouseVisible_;
-		bool isRunning;
-		bool isFixedTime;
+				 void toggleMouseVisible();
+				 void toggleFixedTimeState();
+				 */
+		private:
+			bool mouseVisible_;
+			bool isRunning;
+			bool isFixedTime;
 
-		ugen::GameComponentList components;
-		ugen::GraphicManager gestionGraphics_;
-};
+			ugen::GameComponentList components;
+			ugen::GraphicManager gestionGraphics_;
+	};
+}
 
 #endif // GAME_H

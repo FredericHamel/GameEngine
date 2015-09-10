@@ -8,7 +8,7 @@ namespace ugen
 	/**
 	 * @brief Construtor of the game main class.
 	 */
-	Game::Game()
+	Game::Game() throw(VideoException)
 		:gestionGraphics_()
 	{
 		Debug::log(StringConcat() << "Create Game");
@@ -17,7 +17,7 @@ namespace ugen
 		//mouseVisible = true;
 	}
 
-	Game::Game(const char* title, int32_t w, int32_t h)
+	Game::Game(const char* title, int32_t w, int32_t h) throw (VideoException)
 		:gestionGraphics_(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h)
 	{
 		Debug::log(StringConcat() << "Create Game");
@@ -25,7 +25,7 @@ namespace ugen
 		isRunning = true;
 	}
 
-	Game::Game(const char* title, int32_t x, int32_t y, int32_t w, int32_t h)
+	Game::Game(const char* title, int32_t x, int32_t y, int32_t w, int32_t h) throw (VideoException)
 		:gestionGraphics_(title, x, y, w, h)
 	{
 		Debug::log(StringConcat() << "Create Game");
@@ -50,26 +50,20 @@ namespace ugen
 	 * @brief main game loop.
 	 */
 	void 
-		Game::run()
+		Game::run() throw(std::exception)
 		{
 			GameTime *gameTime = GameTime::getInstance();
-			try {
-				initialize();
-				loadContent();
+			initialize();
+			loadContent();
 
-				gameTime->init();
+			gameTime->init();
 
-				while(isRunning)
-				{
-					draw(*gameTime);
-					update(*gameTime);
-					gameTime->update();
-				}
-			} catch(ugen::RuntimeException& e) {
-				Debug::error(StringConcat() << e.getExceptionName() << ": " << e.what());
-			} catch(std::exception& e) {
-				Debug::error(StringConcat() << "Exception: " << e.what());
-			}	/** It catch std::exception */
+			while(isRunning)
+			{
+				draw(*gameTime);
+				update(*gameTime);
+				gameTime->update();
+			}
 		}
 
 	void 
@@ -88,7 +82,7 @@ namespace ugen
 	 * @brief Initialize all components.
 	 */
 	void
-		Game::initialize()
+		Game::initialize() throw (std::exception)
 		{
 			//	GameSystem::init(); // initialise le video.
 			gestionGraphics_.init();
@@ -102,7 +96,7 @@ namespace ugen
 	 * @brief load the resource.
 	 */
 		void
-			Game::loadContent()
+			Game::loadContent() throw (std::exception)
 			{
 				for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 				{
@@ -115,7 +109,7 @@ namespace ugen
 		 * @brief Update the logic of the game.
 		 */
 		void
-			Game::update(GameTime& gameTime)
+			Game::update(GameTime& gameTime) throw (std::exception)
 			{
 				for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 				{
@@ -128,7 +122,7 @@ namespace ugen
 		 * @brief Draw the DrawableGameComponent on the screen.
 		 */
 				void
-					Game::draw(GameTime& gameTime)
+					Game::draw(GameTime& gameTime) throw (std::exception)
 					{
 						for(GameComponentList::iterator it = components.begin(); it != components.end(); ++it)
 						{
