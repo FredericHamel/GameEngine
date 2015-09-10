@@ -4,7 +4,7 @@ SRC_CC:=${SRC_DIR}/%.cc
 SRC_CPP:=${SRC_DIR}/%.cpp
 SRC:=$(wildcard ${SRC_DIR}/*.cc) $(wildcard ${SRC_DIR}/*.cpp) $(wildcard ${SRC_DIR}/exceptions/*.cpp) $(wildcard ${SRC_DIR}/subsystem/*.cpp)
 
-EXEC:=GameGraphics.so
+EXEC:=UGEN.so
 
 BIN_DIR:=lib
 BIN:=${BIN_DIR}/lib${EXEC}
@@ -29,7 +29,7 @@ $(BIN_DIR):
 
 # Project building
 $(BIN): $(OBJ)
-	@echo Building $(EXEC).
+	@echo Building $@.
 	@g++ -O -shared -Wl,-soname,lib$(EXEC) -o $@ $^
 
 $(OBJ_DIR)/%.o: $(SRC_CC) $(INCLUDE)

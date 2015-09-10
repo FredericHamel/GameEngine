@@ -10,6 +10,7 @@ project(UGEN_GAME_ENGINE)
 include(cmake/AddCompilerFlags.cmake)
 include(cmake/AddDependency.cmake)
 include(cmake/AddGameGraphicsLibrary.cmake)
+include(cmake/AddUGENLibrary.cmake)
 include(cmake/AddGameTestExecutable.cmake)
 include(cmake/AddUnitTesting.cmake)
 
