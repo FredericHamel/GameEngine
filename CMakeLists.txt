@@ -4,8 +4,9 @@ if(${PROJECT_SOURCE_DIR} STREQUAL ${PROJECT_BINARY_DIR})
 endif()
 
 # Declare project
-cmake_minimum_required(VERSION 2.4)
+cmake_minimum_required(VERSION 3.4)
 project(UGEN_GAME_ENGINE)
+
 
 include(cmake/AddCompilerFlags.cmake)
 include(cmake/AddDependency.cmake)
