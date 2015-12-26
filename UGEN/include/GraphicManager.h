@@ -45,7 +45,6 @@ public:
 	void drawString(const ugen::SpriteFont* const, std::string, const ugen::Point2D* const, Color) const;
 	void drawPoint2D(std::vector<ColoredPoint2D*>) const;
 	void drawRect(const ugen::Rectangle* const, const ugen::Color* const) const;
-	void endDraw();
 };
 
 #endif
