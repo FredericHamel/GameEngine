@@ -2,9 +2,10 @@
 #define POINT2D_H
 
 #include "Common.h"
-#include <ostream>
+#include "Serializable.h"
 
-class ugen::Point2D
+
+class ugen::Point2D : public ugen::Serializable
 {
 private:
 	int x_, y_;
@@ -27,13 +28,13 @@ public:
 	bool operator!=(const ugen::Point2D&) const;
 	Point2D operator+(const ugen::Point2D&) const;
 	Point2D operator-(const ugen::Point2D&) const;
+	
+	virtual void serialize(std::ostream&) const;
 private:
 	void AddX(int);
 	void AddY(int);
 	void setX(int);
 	void setY(int);
-
-	friend std::ostream& ugen::operator<<(std::ostream&, const ugen::Point2D&);
 };
 
 #endif // POINT2D_H

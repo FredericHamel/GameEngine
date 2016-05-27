@@ -99,8 +99,7 @@ Point2D Point2D::operator-(const Point2D& p) const
 	return Point2D(this->getX() - p.getX(), this->getY() - p.getY());
 }
 
-std::ostream& ugen::operator<<(std::ostream& out, const Point2D& p)
+void Point2D::serialize(std::ostream& out) const
 {
-	out << "(" << p.getX() << ", " << p.getY() << ")";
-	return out;
+	out << "(" << this->getX() << ", " << this->getY() << ")";
 }

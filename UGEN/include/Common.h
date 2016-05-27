@@ -43,10 +43,11 @@ namespace ugen
 	class ColoredPoint2D;
 	class Rectangle;
 
+	// Interface
+	class Serializable;
+
 	typedef SDL_Event GameEvent;
 	typedef std::vector<GameComponent*> GameComponentList;
-
-	extern std::ostream& operator<<(const std::ostream&, const Point2D&);
 }
 #pragma GCC visibility pop
 

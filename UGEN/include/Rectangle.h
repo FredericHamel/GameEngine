@@ -4,7 +4,7 @@
 #include "Common.h"
 #include "Point2D.h"
 
-class ugen::Rectangle
+class ugen::Rectangle : public Serializable
 {
 private:
 	ugen::Point2D position_;
@@ -36,9 +36,8 @@ public:
 
 	bool operator==(const ugen::Rectangle&);
 	bool operator!=(const ugen::Rectangle&);
-private:
 
-	friend std::ostream& operator<<(std::ostream&, const ugen::Rectangle&);
+	virtual void serialize(std::ostream&) const;
 };
 
 inline const ugen::Point2D& ugen::Rectangle::getPosition() const

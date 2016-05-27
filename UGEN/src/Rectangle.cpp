@@ -73,10 +73,9 @@ bool Rectangle::operator!=(const Rectangle& rect)
 	return !(*this == rect);
 }
 
-std::ostream& operator<<(std::ostream& out, const Rectangle& rect)
+void Rectangle::serialize(std::ostream& out) const
 {
-	out << "Position: " << rect.getPosition() << std::endl
-		<< "Width: " << rect.getWidth() << std::endl
-		<< "Height: " << rect.getHeight() << std::endl;
-	return out;
+	out << "Position: " << this->getPosition() << std::endl
+		<< "Width: " << this->getWidth() << std::endl
+		<< "Height: " << this->getHeight() << std::endl;
 }
