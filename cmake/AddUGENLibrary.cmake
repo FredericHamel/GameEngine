@@ -12,7 +12,20 @@ target_link_libraries(UGEN
 	${OPENGL_gl_LIBRARY}
 	${PHYSFS_LIBRARY})
 
-install(DIRECTORY "UGEN/include" DESTINATION ".")
+file(GLOB install_include_files "UGEN/include/*")
+set(list_install_dirs "")
+set(list_install_files "")
+foreach(item ${install_include_files})
+  if(IS_DIRECTORY ${item})
+    LIST(APPEND list_install_dirs ${item})
+  else()
+    LIST(APPEND list_install_files ${item})
+  endif()
+endforeach()
+
+
+install(FILES ${list_install_files} DESTINATION "include/UGEN")
+install(DIRECTORY ${list_install_dirs} DESTINATION "include/UGEN")
 
 install(TARGETS UGEN
 	RUNTIME DESTINATION bin
