@@ -7,6 +7,9 @@ float ALSound::volume = 1.0f;
 ALCdevice *ALSound::device = nullptr;
 ALCcontext *ALSound::ctx = nullptr;
 
+std::map<std::string, ALSound*> ALSound::all_sounds;
+std::list<ALSound*> ALSound::playing;
+
 ALSound::ALSound()
 	:ALSound(std::string(""))
 {
@@ -17,17 +20,29 @@ ALSound::ALSound(const std::string& sound_name)
 {
 }
 
-bool
-ALSound::is_initialized()
-{
-	return ALSound::initialized;
-}
+
 
 void
 ALSound::initialize()
 {
-	ALSound::device = alcOpenDevice(nullptr);
-	if(!device)
-		throw 1;
+	if(!ALSound::is_initialized())
+	{
+		ALSound::device = alcOpenDevice(nullptr);
+		// TODO add real exception
+		if(!ALSound::device)
+			throw 1;
+		ALSound::ctx = alcCreateContext(ALSound::device, nullptr);
+		ALSound::initialized = true;
+	}
+}
+
+void
+ALSound::quit()
+{
+	alcDestroyContext(ALSound::ctx);
+	alcCloseDevice(ALSound::device);
+
+	ALSound::device = nullptr;
+	ALSound::ctx = nullptr;
 }
 
