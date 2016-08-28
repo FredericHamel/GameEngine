@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace ugen;
 
-int main()
+int main(int argc, char **argv)
 {
 	try {
 		AppGame game;

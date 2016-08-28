@@ -10,7 +10,7 @@ char read()
 	return std::cin.get();
 }
 
-int main()
+int main(int argc, char **argv)
 {
 	try {
 		Video video;
