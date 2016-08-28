@@ -18,7 +18,7 @@ void FileTools::Init()
  */
 void FileTools::AddSearchPath(const char* path, FileTools::TYPE_APPEND type)
 {
-	PHYSFS_addToSearchPath(path, type);
+	PHYSFS_mount(path, nullptr, type);
 }
 
 /**
@@ -43,7 +43,7 @@ void FileTools::LoadFileBuffer(const std::string& nomFichier, size_t* size, char
 
 	if(*buffer == nullptr) throw IOException(StringConcat() << "Failed to allocate file buffer: " << size);
 
-	PHYSFS_read(fichier, *buffer,sizeof(char), PHYSFS_uint32(*size));
+	PHYSFS_readBytes(fichier, *buffer, PHYSFS_uint32(*size));
 	PHYSFS_close(fichier);
 }
 
