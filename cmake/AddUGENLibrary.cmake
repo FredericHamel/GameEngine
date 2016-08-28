@@ -6,10 +6,12 @@ include_directories("UGEN/include")
 add_library(UGEN SHARED ${src})
 target_link_libraries(UGEN
 	${SDL2_LIBRARY}
+	${SDL2MAIN_LIBRARY}
 	${SDL2_IMAGE_LIBRARY}
 	${SDL2_TTF_LIBRARY}
-  ${OPENAL_LIBRARY}
+	${OPENAL_LIBRARY}
 	${OPENGL_gl_LIBRARY}
+	${GLEW_LIBRARY}
 	${PHYSFS_LIBRARY})
 
 file(GLOB install_include_files "UGEN/include/*")

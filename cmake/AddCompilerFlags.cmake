@@ -1,8 +1,17 @@
 
 # Default compiler flags
 # Compile as c++11
-if(MINGW)
-	set(CMAKE_CXX_FLAGS "-std=gnu++11 ${CMAKE_CXX_FLAGS}")
+if(WIN32)
+	message(STATUS "OS : ${CMAKE_SYSTEM_NAME}")
+	if(MSVC)
+		message(FATAL_ERROR "Compiler - MSVC")
+	elseif(MINGW)
+		set(CMAKE_EXE_LINKER_FLAGS "-lmingw32")
+		set(CMAKE_CXX_FLAGS "-std=gnu++11 ${CMAKE_CXX_FLAGS}")
+		message(STATUS "Compiler - MinGW")
+	else()
+		message(FATAL_ERROR "Compiler - Unknown")
+	endif()
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
 	message(FATAL_ERROR "Not compatible yet")
 elseif(WIN32)
