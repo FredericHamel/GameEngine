@@ -223,9 +223,9 @@ namespace ugen
 		}
 
 	void
-		GraphicManager::drawString(const SpriteFont *const font, std::string text, const Point2D* const p, Color fg) const
+		GraphicManager::drawString(SpriteFont* const font, std::string text, const Point2D* const p, Color fg, int32_t size) const
 		{
-			Sprite* sprite = font->renderText(text, fg);
+			Sprite* sprite = font->renderText(text, size, fg);
 			if(sprite != NULL)
 			{
 				Rectangle rect(*p, sprite->getWidth(), sprite->getHeight());

@@ -14,7 +14,7 @@ public:
 	GraphicManager() throw (VideoException);
 	GraphicManager(std::string, int32_t, int32_t, int32_t, int32_t) throw (VideoException);
 	~GraphicManager();
-	
+
 	void init();
 
 	// Set Matrix mode
@@ -42,7 +42,7 @@ public:
 	void clear(float, float, float, float) const;
 	void draw(const ugen::Sprite* const, int32_t, int32_t) const;
 	void draw(const ugen::Sprite* const, const ugen::Rectangle* const, const ugen::Rectangle* const) const;
-	void drawString(const ugen::SpriteFont* const, std::string, const ugen::Point2D* const, Color) const;
+	void drawString(ugen::SpriteFont* const, std::string, const ugen::Point2D* const, Color, int32_t) const;
 	void drawPoint2D(std::vector<ColoredPoint2D*>) const;
 	void drawRect(const ugen::Rectangle* const, const ugen::Color* const) const;
 };
