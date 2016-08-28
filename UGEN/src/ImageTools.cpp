@@ -1,6 +1,6 @@
 #include "ImageTools.h"
 #include "FileTools.h"
-#include <SDL/SDL_image.h>
+#include <SDL2/SDL_image.h>
 
 using ugen::Sprite;
 using ugen::ImageTools;
