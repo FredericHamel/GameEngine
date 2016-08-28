@@ -7,9 +7,11 @@
 
 class ugen::SpriteFont
 {
-	TTF_Font* font;
+	std::map<int, TTF_Font*> fonts;
+	static std::map<std::string, ugen::SpriteFont*> all_sprite_fonts;
 	SpriteFont(SDL_RWops *, int32_t);
 public:
+	SpriteFont(std::string name);
 	~SpriteFont();
 	Sprite* renderText(std::string, Color) const;
 
