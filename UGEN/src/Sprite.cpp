@@ -1,5 +1,14 @@
 #include "Sprite.h"
-#include <GL/gl.h>
+
+#if defined(__WIN32__)
+	#include <Windows.h>
+	#include <GL/gl.h>
+	#include <GL/glext.h>
+#else
+	#include <GL/gl.h>
+#endif
+
+
 
 using ugen::Sprite;
 

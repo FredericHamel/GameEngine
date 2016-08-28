@@ -4,7 +4,7 @@
 
 using namespace ugen;
 
-int main() {
+int main(int argc, char **argv) {
 	FileTools::Init();
 	FileTools::AddSearchPath(".");
 	try

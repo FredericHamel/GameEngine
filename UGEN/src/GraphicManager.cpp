@@ -110,13 +110,17 @@ namespace ugen
 	void
 		GraphicManager::setOrthoSystem(double left, double right, double bottom, double top, double near, double far) const
 		{
-			glOrtho(left, right, bottom, top, near, far);
+			glOrtho(GLdouble(left), GLdouble(right),
+				GLdouble(bottom), GLdouble(top),
+				GLdouble(near),	GLdouble(far));
 		}
 
 	void
 		GraphicManager::setFrustum(double left, double right, double bottom, double top, double near, double far) const
 		{
-			glFrustum(left, right, bottom, top, near, far);
+			glFrustum(GLdouble(left), GLdouble(right),
+				GLdouble(bottom), GLdouble(top),
+				GLdouble(near),	GLdouble(far));
 		}
 
 	void

@@ -8,8 +8,14 @@
 #include <complex>
 #include <iostream>
 
+
 #define GL_GLEXT_PROTOTYPES
-#include <GL/gl.h>
+#if defined(__WIN32__)
+#	include <Windows.h>
+#   include <GL/glew.h>
+#else
+#	include <GL/gl.h>
+#endif
 
 static float vertices[] = {
 	-0.5f, 0.0f, 0.0f,
@@ -41,12 +47,12 @@ GameTest::~GameTest()
 	Debug::log(StringConcat() << "GameTest::~GameTest();");
 }
 
-Rectangle dest(10,10, 0, 0);
+ugen::Rectangle dest(10,10, 0, 0);
 void GameTest::initialize() throw (std::exception)
 {
 	size_t size;
 	char *data = nullptr;
-	
+
 	this->addComponent(new FPS(this, 1000.0f));
 
 	FileTools::Init();
@@ -60,7 +66,7 @@ void GameTest::initialize() throw (std::exception)
 	/*textRenderer = SpriteFont::loadFont("DejaVuSans.ttf", 40);
 
 	if(textRenderer == nullptr)
-		Debug::error(StringConcat() << "Unable to create text renderer"); 
+        Debug::error(StringConcat() << "Unable to create text renderer");
 	else
 	{
 		Color color(0, 128, 0);
@@ -84,7 +90,7 @@ void GameTest::loadContent() throw (std::exception)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	
+
 	// IBO
 	glGenBuffers(1, &ibo );
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
