@@ -17,7 +17,7 @@ namespace ugen
 	/**
 	 * @brief create the Graphic manager with a inner window.
 	 */
-	GraphicManager::GraphicManager() throw (VideoException)
+	GraphicManager::GraphicManager()
 		:Video(), GameWindow(DEFAULT_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DEFAULT_WIDTH, DEFAULT_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN)
 	{
 		Debug::log(StringConcat() << "Create GraphicManager: window.title = " << DEFAULT_TITLE);
@@ -26,7 +26,7 @@ namespace ugen
 	/**
 	 * @brief
 	 */
-	GraphicManager::GraphicManager(std::string title, int32_t x, int32_t y, int32_t w, int32_t h) throw (VideoException)
+	GraphicManager::GraphicManager(std::string title, int32_t x, int32_t y, int32_t w, int32_t h)
 		:Video(), GameWindow(title.c_str(), x, y, w, h, SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN)
 	{
 		Debug::log(StringConcat() << "Create GraphicManager: window.title = " << title);

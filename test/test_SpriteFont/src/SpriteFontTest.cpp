@@ -5,17 +5,17 @@ SpriteFontTest::SpriteFontTest()
 }
 
 void
-SpriteFontTest::initialize() throw (std::exception) {
+SpriteFontTest::initialize() {
 }
 
 void
-SpriteFontTest::loadContent() throw (std::exception) {
+SpriteFontTest::loadContent() {
 }
 
 void
-SpriteFontTest::update(ugen::GameTime& gameTime) throw (std::exception) {
+SpriteFontTest::update(ugen::GameTime& gameTime) {
 }
 
 void
-SpriteFontTest::draw(ugen::GameTime& gameTime) throw (std::exception) {
+SpriteFontTest::draw(ugen::GameTime& gameTime) {
 }

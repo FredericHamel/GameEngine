@@ -12,15 +12,15 @@ namespace ugen
 	class Game
 	{
 		public:
-			Game() throw(VideoException);
-			Game(const char*, int32_t, int32_t) throw(VideoException);
-			Game(const char*, int32_t, int32_t, int32_t, int32_t) throw(VideoException);
+			Game();
+			Game(const char*, int32_t, int32_t);
+			Game(const char*, int32_t, int32_t, int32_t, int32_t);
 			virtual ~Game();
-			virtual void run() throw (std::exception);
-			virtual void initialize() throw (std::exception);
-			virtual void loadContent() throw (std::exception);
-			virtual void update(ugen::GameTime&) throw (std::exception);
-			virtual void draw(ugen::GameTime&) throw (std::exception);
+			virtual void run();
+			virtual void initialize();
+			virtual void loadContent();
+			virtual void update(ugen::GameTime&);
+			virtual void draw(ugen::GameTime&);
 
 			void exit();
 

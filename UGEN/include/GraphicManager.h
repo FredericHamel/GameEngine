@@ -11,8 +11,8 @@
 class ugen::GraphicManager : public ugen::Video, public ugen::GameWindow
 {
 public:
-	GraphicManager() throw (VideoException);
-	GraphicManager(std::string, int32_t, int32_t, int32_t, int32_t) throw (VideoException);
+	GraphicManager();
+	GraphicManager(std::string, int32_t, int32_t, int32_t, int32_t);
 	~GraphicManager();
 
 	void init();
