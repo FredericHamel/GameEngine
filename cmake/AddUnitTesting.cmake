@@ -11,7 +11,7 @@ foreach(include_dir ${dirs})
 endforeach()
 
 foreach(test ${test_projects})
-	string(REGEX MATCH "([A-Za-z_]*)$" p_name ${test})
+	string(REGEX MATCH "([A-Za-z0-9_]*)$" p_name ${test})
 	file(GLOB sources ${PROJECT_SOURCE_DIR}/${test}/src/*.cc ${PROJECT_SOURCE_DIR}/${test}/src/*.cpp)
 	if(sources)
 		# Message indicating unit testing state.
