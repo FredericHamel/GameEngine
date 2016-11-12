@@ -3,66 +3,61 @@
 
 #include "Common.h"
 #include "Point2D.h"
-
-class ugen::Rectangle : public Serializable
+namespace ugen
 {
-private:
-	ugen::Point2D position_;
-	int width_,
-		height_;
-public:
-	// Point2D(x=0, y=0), w, h
-	Rectangle(ugen::Point2D, int,int);
-	
-	// x, y, w, h
-	Rectangle(int=0,int=0,int=0,int=0);
-	Rectangle(const ugen::Rectangle&);
+  class Rectangle: public Serializable
+  {
+    SDL_Rect inner_rect;
+    public:
+    // x, y, w, h
+    Rectangle(int=0,int=0,int=0,int=0);
+    // Point2D(x=0, y=0), w, h
+    Rectangle(const Point2D&, int,int);
+    Rectangle(const Rectangle&);
 
-	void Move(int, int);
-	void Offset(const Point2D&);
-	void Offset(int, int);
+    void Move(int, int);
+    void Offset(const Point2D&);
+    void Offset(int, int);
 
-	const ugen::Point2D& getPosition() const;
-	int getX() const;
-	int getY() const;
-	int getWidth() const;
-	int getHeight() const;
-	
-	void setWidth(int);
-	void setHeight(int);
+    Point2D getPosition() const;
+    int getX() const;
+    int getY() const;
+    int getWidth() const;
+    int getHeight() const;
 
-	bool Contain(const ugen::Point2D&) const;
-	bool Contain(const ugen::Rectangle&) const ;
+    void setWidth(int);
+    void setHeight(int);
 
-	bool operator==(const ugen::Rectangle&);
-	bool operator!=(const ugen::Rectangle&);
+    bool Contain(const Point2D&) const;
+    bool Contain(const Rectangle&) const ;
 
-	virtual void serialize(std::ostream&) const;
-};
+    bool operator==(const Rectangle&);
+    bool operator!=(const Rectangle&);
 
-inline const ugen::Point2D& ugen::Rectangle::getPosition() const
-{
-	return this->position_;
-}
+    explicit operator const SDL_Rect&() const;
 
-inline int ugen::Rectangle::getX() const
-{
-	return getPosition().getX();
-}
+    virtual void serialize(std::ostream&) const;
+  };
 
-inline int ugen::Rectangle::getY() const
-{
-	return getPosition().getY();
-}
+  inline int Rectangle::getX() const
+  {
+    return this->inner_rect.x;
+  }
 
-inline int ugen::Rectangle::getWidth() const
-{
-	return this->width_;
-}
+  inline int Rectangle::getY() const
+  {
+    return this->inner_rect.y;
+  }
 
-inline int ugen::Rectangle::getHeight() const
-{
-	return this->height_;
+  inline int Rectangle::getWidth() const
+  {
+    return this->inner_rect.w;
+  }
+
+  inline int Rectangle::getHeight() const
+  {
+    return this->inner_rect.h;
+  }
 }
 
 #endif // RECTANGE_H
