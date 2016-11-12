@@ -57,7 +57,7 @@ void GameTest::initialize() throw (std::exception)
 
 	FileTools::Init();
 //	SpriteFont::init();
-	FileTools::AddSearchPath(".");
+	FileTools::AddSearchPath("..");
 	FileTools::AddSearchPath("/usr/share/fonts/TTF");
 	FileTools::LoadFileBuffer("README.md", &size, &data);
 	std::cout.write(data, size) << std::endl;
@@ -100,7 +100,7 @@ void GameTest::loadContent() throw (std::exception)
 
 void GameTest::update(GameTime& gameTime) throw (std::exception)
 {
-	while(InputManager::PollEvent(&event))
+	if(InputManager::PollEvent(&event))
 	{
 		switch(event.type)
 		{
