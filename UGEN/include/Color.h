@@ -102,10 +102,7 @@ public:
 	virtual ~Color();
 private:
 	void setRGBA(uint8_t, uint8_t, uint8_t, uint8_t);
-	union {
-		struct { uint8_t r, g, b, a; };
-		uint8_t data[4];
-	};
+	uint8_t r, g, b, a;
 };
 
 inline uint8_t ugen::Color::getRed() const
