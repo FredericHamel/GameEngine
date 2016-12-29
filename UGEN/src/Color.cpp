@@ -9,9 +9,10 @@ Color::Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 
 Color::Color(Color::Palette p)
 {
-	int8_t bgr[3];
-	memcpy(bgr, (int8_t*)&p, sizeof(p));
-	setRGBA(bgr[2], bgr[1], bgr[0], 0);
+  this->r = 0xFF & (p >> 16);
+  this->g = 0xFF & (p >> 8);
+  this->b = 0xFF & p;
+  this->a = 0;
 }
 
 void Color::setRGBA(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
