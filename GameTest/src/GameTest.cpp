@@ -9,13 +9,13 @@
 #include <iostream>
 
 
-#define GL_GLEXT_PROTOTYPES
-#if defined(__WIN32__)
-#	include <Windows.h>
-#   include <GL/glew.h>
-#else
-#	include <GL/gl.h>
-#endif
+//#define GL_GLEXT_PROTOTYPES
+//#if defined(__WIN32__)
+//#	include <Windows.h>
+//# include <GL/glew.h>
+//#else
+//# include <GL/gl.h>
+//#endif
 
 static float vertices[] = {
 	-0.5f, 0.0f, 0.0f,
@@ -27,7 +27,7 @@ static unsigned int g_index[] = { 1, 2, 3 };
 
 static GLuint vao, vbo, ibo;
 
-GameTest::GameTest() throw(ugen::VideoException)
+GameTest::GameTest()
 {
 }
 
@@ -48,7 +48,7 @@ GameTest::~GameTest()
 }
 
 ugen::Rectangle dest(10,10, 0, 0);
-void GameTest::initialize() throw (std::exception)
+void GameTest::initialize()
 {
 	size_t size;
 	char *data = nullptr;
@@ -81,7 +81,7 @@ void GameTest::initialize() throw (std::exception)
 	Game::initialize();
 }
 
-void GameTest::loadContent() throw (std::exception)
+void GameTest::loadContent()
 {
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
@@ -98,7 +98,7 @@ void GameTest::loadContent() throw (std::exception)
 	Game::loadContent();
 }
 
-void GameTest::update(GameTime& gameTime) throw (std::exception)
+void GameTest::update(GameTime& gameTime)
 {
 	if(InputManager::PollEvent(&event))
 	{
@@ -120,7 +120,7 @@ void GameTest::update(GameTime& gameTime) throw (std::exception)
 	Game::update(gameTime);
 }
 
-void GameTest::draw(GameTime& gameTime) throw (std::exception)
+void GameTest::draw(GameTime& gameTime)
 {
 	getGestionGraphics().clear(0.0f,0.0f,0.4f,0.0f);
 	//getGestionGraphics().draw(text, 10, 10);

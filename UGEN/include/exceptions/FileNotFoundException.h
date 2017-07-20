@@ -7,11 +7,11 @@
 
 namespace ugen
 {
-	class FileNotFoundException : public ugen::IOException
-	{
-		public:
-			FileNotFoundException(const std::string& msg);
-	};
+  class FileNotFoundException : public ugen::IOException
+  {
+    public:
+      FileNotFoundException(const std::string& msg);
+  };
 }
 #pragma GCC visibility pop
 

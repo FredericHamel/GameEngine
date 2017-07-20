@@ -5,24 +5,24 @@
 
 class ugen::GameTime
 {
-	GameTime();
+  GameTime();
 public:
-	~GameTime();
+  ~GameTime();
 
-	double getElapsedTimeSecond() const;
-	double getElapsedTimeMillisecond() const;
-	
-	// Get unique instance
-	static ugen::GameTime* getInstance();
+  double getElapsedTimeSecond() const;
+  double getElapsedTimeMillisecond() const;
+  
+  // Get unique instance
+  static ugen::GameTime* getInstance();
 
-	void init();
-	void update();
+  void init();
+  void update();
 private:
-	static ugen::GameTime gameTime_;
+  static ugen::GameTime gameTime_;
 
-	double begin_;
-	double end_;
-	double elapsedTimeMilliseconds_;
+  double begin_;
+  double end_;
+  double elapsedTimeMilliseconds_;
 };
 
 #endif // GAMETIME_H

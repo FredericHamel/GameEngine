@@ -7,13 +7,13 @@
 
 namespace ugen
 {
-	class VideoException : public RuntimeException
-	{
-		public:
-			VideoException(const std::string&);
-		protected:
-			VideoException(const std::string&, const std::string&);
-	};
+  class VideoException : public RuntimeException
+  {
+    public:
+      VideoException(const std::string&);
+    protected:
+      VideoException(const std::string&, const std::string&);
+  };
 }
 
 #pragma GCC visibility pop

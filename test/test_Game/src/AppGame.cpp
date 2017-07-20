@@ -1,7 +1,7 @@
 #include "AppGame.h"
 #include <InputManager.h>
 
-AppGame::AppGame() throw (ugen::VideoException)
+AppGame::AppGame()
 	:ugen::Game("AppGame", 640, 480)
 {
 }
@@ -11,19 +11,19 @@ AppGame::~AppGame()
 }
 
 void
-AppGame::initialize() throw (std::exception)
+AppGame::initialize()
 {
 	ugen::Game::initialize();
 }
 
 void
-AppGame::loadContent() throw (std::exception)
+AppGame::loadContent()
 {
 	ugen::Game::loadContent();
 }
 
 void
-AppGame::update(ugen::GameTime& gameTime) throw (std::exception)
+AppGame::update(ugen::GameTime& gameTime)
 {
 	SDL_Event event;
 	while(ugen::InputManager::PollEvent(&event))
@@ -35,7 +35,7 @@ AppGame::update(ugen::GameTime& gameTime) throw (std::exception)
 }
 
 void
-AppGame::draw(ugen::GameTime& gameTime) throw (std::exception)
+AppGame::draw(ugen::GameTime& gameTime)
 {
 	ugen::Game::draw(gameTime);
 }

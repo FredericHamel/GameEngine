@@ -3,11 +3,11 @@
 
 ugen::Video::Video()
 {
-	SDL_InitSubSystem(SDL_INIT_VIDEO);
+  SDL_InitSubSystem(SDL_INIT_VIDEO);
 }
 
 ugen::Video::~Video()
 {
-	SDL_QuitSubSystem(SDL_INIT_VIDEO);
+  SDL_QuitSubSystem(SDL_INIT_VIDEO);
 }
 

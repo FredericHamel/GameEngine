@@ -7,13 +7,13 @@
 
 namespace ugen
 {
-	class IOException: public RuntimeException
-	{
-		public:
-			IOException(const std::string&);
-		protected:
-			IOException(const std::string&, const std::string&);
-	};
+  class IOException: public RuntimeException
+  {
+    public:
+      IOException(const std::string&);
+    protected:
+      IOException(const std::string&, const std::string&);
+  };
 }
 
 #pragma GCC visibility pop

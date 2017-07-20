@@ -8,7 +8,7 @@ using ugen::FileTools;
  */
 void FileTools::Init()
 {
-	PHYSFS_init(NULL);
+  PHYSFS_init(NULL);
 }
 
 /**
@@ -18,7 +18,7 @@ void FileTools::Init()
  */
 void FileTools::AddSearchPath(const char* path, FileTools::TYPE_APPEND type)
 {
-	PHYSFS_mount(path, nullptr, type);
+  PHYSFS_mount(path, nullptr, type);
 }
 
 /**
@@ -26,34 +26,34 @@ void FileTools::AddSearchPath(const char* path, FileTools::TYPE_APPEND type)
  * @param nomFichier is the filename.
  * @return the file buffer.
  */
-void FileTools::LoadFileBuffer(const std::string& nomFichier, size_t* size, char** buffer) throw(ugen::IOException)
+void FileTools::LoadFileBuffer(const std::string& nomFichier, size_t* size, char** buffer)
 {
-	*buffer = nullptr;
+  *buffer = nullptr;
 
-	PHYSFS_File* fichier = nullptr;
-	if(!PHYSFS_exists(nomFichier.c_str()))
-		throw FileNotFoundException(StringConcat() << nomFichier << " (No such file or directory)"); 
+  PHYSFS_File* fichier = nullptr;
+  if(!PHYSFS_exists(nomFichier.c_str()))
+    throw FileNotFoundException(StringConcat() << nomFichier << " (No such file or directory)"); 
 
-	fichier = PHYSFS_openRead(nomFichier.c_str());
-	
-	if(fichier == nullptr) throw IOException(StringConcat() << "Failed to open file " << nomFichier);
+  fichier = PHYSFS_openRead(nomFichier.c_str());
+  
+  if(fichier == nullptr) throw IOException(StringConcat() << "Failed to open file " << nomFichier);
 
-	*size = PHYSFS_fileLength(fichier);
-	*buffer = new char[*size];
+  *size = PHYSFS_fileLength(fichier);
+  *buffer = new char[*size];
 
-	if(*buffer == nullptr) throw IOException(StringConcat() << "Failed to allocate file buffer: " << size);
+  if(*buffer == nullptr) throw IOException(StringConcat() << "Failed to allocate file buffer: " << size);
 
-	PHYSFS_read(fichier, *buffer, sizeof(char), PHYSFS_uint32(*size));
-	PHYSFS_close(fichier);
+  PHYSFS_read(fichier, *buffer, sizeof(char), PHYSFS_uint32(*size));
+  PHYSFS_close(fichier);
 }
 
 void FileTools::UnloadFileBuffer(char** buffer)
 {
-	if(*buffer != nullptr)
-	{
-		delete[] *buffer;
-		*buffer = nullptr;
-	}
+  if(*buffer != nullptr)
+  {
+    delete[] *buffer;
+    *buffer = nullptr;
+  }
 }
 
 /**
@@ -61,5 +61,5 @@ void FileTools::UnloadFileBuffer(char** buffer)
  */
 void FileTools::Quit()
 {
-	PHYSFS_deinit();
+  PHYSFS_deinit();
 }

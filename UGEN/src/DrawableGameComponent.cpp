@@ -9,9 +9,9 @@ using ugen::DrawableGameComponent;
  * @brief basic construction of a DrawableGameComponent
  */
 DrawableGameComponent::DrawableGameComponent(const Game* game)
-	:GameComponent::GameComponent(game)
+  :GameComponent::GameComponent(game)
 {
-	this->setVisible(true);
+  this->setVisible(true);
 }
 
 /**

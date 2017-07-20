@@ -31,7 +31,7 @@ class StringConcat: public std::string {
 
   private:
 
-    std::ostringstream oss;		/**< used to concatenate non string objects to this string */
+    std::ostringstream oss;    /**< used to concatenate non string objects to this string */
 };
 
 /**

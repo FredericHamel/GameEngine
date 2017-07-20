@@ -13,25 +13,25 @@
 class ugen::FileTools
 {
 public:
-	enum TYPE_APPEND
-	{
-		PREV_APPEND,
-		SUFF_APPEND
-	};
+  enum TYPE_APPEND
+  {
+    PREV_APPEND,
+    SUFF_APPEND
+  };
 private:
-	FileTools();
+  FileTools();
 public:
-	static void Init();
-	static void AddSearchPath(const char*, FileTools::TYPE_APPEND=FileTools::SUFF_APPEND);
-	static bool Exists(const char*);
-	static void LoadFileBuffer(const std::string&, size_t*, char**) throw(ugen::IOException);
-	static void UnloadFileBuffer(char **);
-	static void Quit();
+  static void Init();
+  static void AddSearchPath(const char*, FileTools::TYPE_APPEND=FileTools::SUFF_APPEND);
+  static bool Exists(const char*);
+  static void LoadFileBuffer(const std::string&, size_t*, char**);
+  static void UnloadFileBuffer(char **);
+  static void Quit();
 };
 
 inline bool
 ugen::FileTools::Exists(const char* path)
 {
-	return PHYSFS_exists(path);
+  return PHYSFS_exists(path);
 }
 #endif

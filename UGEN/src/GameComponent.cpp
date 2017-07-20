@@ -12,7 +12,7 @@ using ugen::GameTime;
  */
 GameComponent::GameComponent(const Game* game)
 {
-	this->setGame(game);
+  this->setGame(game);
 }
 
 /**
@@ -28,7 +28,7 @@ GameComponent::~GameComponent()
   */
 const Game* GameComponent::getGame() const
 {
-	return game_;
+  return game_;
 }
 
 /**
@@ -37,7 +37,7 @@ const Game* GameComponent::getGame() const
  */
 void GameComponent::setGame(const Game* game)
 {
-	game_ = game;
+  game_ = game;
 }
 
 /**

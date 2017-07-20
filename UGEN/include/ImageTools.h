@@ -8,11 +8,11 @@
 class ugen::ImageTools
 {
 public:
-	ImageTools() = delete;
-	static void Init();
-	static ugen::Sprite* Load(const std::string&);
-	static void Unload(ugen::Sprite*);
-	static void Quit();
+  ImageTools() = delete;
+  static void Init();
+  static ugen::Sprite* Load(const std::string&);
+  static void Unload(ugen::Sprite*);
+  static void Quit();
 };
 
 #endif // IMAGE_TOOLS_H

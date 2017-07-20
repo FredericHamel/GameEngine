@@ -6,9 +6,9 @@
 class ugen::InputManager
 {
 public:
-	InputManager() = delete;
-	static bool PollEvent(ugen::GameEvent*);
-	static void WaitEvent(ugen::GameEvent*);
+  InputManager() = delete;
+  static bool PollEvent(ugen::GameEvent*);
+  static void WaitEvent(ugen::GameEvent*);
 };
 
 #endif // INPUT_MANAGER_H

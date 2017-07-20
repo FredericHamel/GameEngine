@@ -7,6 +7,15 @@
 
 // SDL methods
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+
+// OpenGL
+#define GL_GLEXT_PROTOTYPES
+#if defined(__WIN32__)
+# include <GL/glew.h>
+#else
+# include <GL/gl.h>
+#endif
 
 // String Methods
 #include <cstring>
@@ -21,33 +30,36 @@
 #pragma GCC visibility push(default)
 namespace ugen
 {
-	class FileTools;
-	class ImageTools;
+  class FileTools;
+  class ImageTools;
 
-	class Game;
-	class GameTime;
-	class GameWindow;
-	class GameComponent;
-	class DrawableGameComponent;
+  class Game;
+  class GameTime;
+  class GameWindow;
+  class GameComponent;
+  class DrawableGameComponent;
 
-	class Sprite;
-	class SpriteFont;
-	class SpriteAnimation;
+  class Sprite;
+  class SpriteFont;
+  class SpriteAnimation;
 
-	class GameSystem;
-	class GraphicManager;
-	class InputManager;
+  class Surface;
+  class DrawableSurface;
 
-	class Color;
-	class Point2D;
-	class ColoredPoint2D;
-	class Rectangle;
+  class GameSystem;
+  class GraphicManager;
+  class InputManager;
 
-	// Interface
-	class Serializable;
+  class Color;
+  class Point2D;
+  class ColoredPoint2D;
+  class Rectangle;
 
-	typedef SDL_Event GameEvent;
-	typedef std::vector<GameComponent*> GameComponentList;
+  // Interface
+  class Serializable;
+
+  typedef SDL_Event GameEvent;
+  typedef std::vector<GameComponent*> GameComponentList;
 }
 #pragma GCC visibility pop
 

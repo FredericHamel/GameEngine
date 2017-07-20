@@ -4,12 +4,12 @@
 #pragma GCC visibility push(default)
 namespace ugen
 {
-	class Video
-	{
-		public:
-			Video();
-			~Video();
-	};
+  class Video
+  {
+    public:
+      Video();
+      ~Video();
+  };
 }
 #pragma GCC visibility pop
 
